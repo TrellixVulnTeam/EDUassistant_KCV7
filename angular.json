@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "something-is-working"
+  "defaultProject": "something-is-working",
+  "cli": {
+    "analytics": "dfcfbd22-d557-455e-b91a-3997c093277b"
+  }
 }

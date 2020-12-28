@@ -1,0 +1,106 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.logo{
+    position: absolute;left: 10%;top: -16.5%;  
+}
+.edu{
+    
+    width: 20%;
+    height: 20%
+}
+
+nav{
+    display: flex;
+    
+    align-items: center;
+    min-height: 50px;
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+    
+}
+.nav-links{
+    display: flex;
+        flex-direction: column;
+        background-color: black;
+        width: 5%;
+        position: absolute;left: 0%;top: 8%;
+        height: 92vh;
+        border-radius: 0% 0% 20% 0%;
+        transform: translateX(-150%);
+        transition: transform 0.5s ease-in;
+}
+
+
+
+.nav-links li a img{
+    width: 155%;
+    height: 50%;
+    margin: 5px;
+   
+    
+}
+
+.postavke{
+    position: absolute;
+    width: 50%;
+    height: 20%;
+    
+}
+.ednevnik{
+    position: absolute;left: 30%;top: 12%;
+    width: 80%;
+    height: 30%;
+}
+ .teams{
+    position: absolute;left: 35%;top: 25%;
+    width: 70%;
+    height: 20%;
+}
+ .yammer{
+    position: absolute;left: 35%;top: 35%;
+    width: 70%;
+    height: 20%;
+}
+.gmail{
+    position: absolute;left: 65%;top: 47%;
+    width: 30%;
+    height: 10%;
+}
+.word{
+    position: absolute;left: 55%;top: 55%;
+    width: 50%;
+    height: 20%;
+
+}
+.powerpoint{
+    position: absolute;left: 35%;top: 65%;
+    width: 70%;
+    height: 18%;
+}
+.excel{
+    position: absolute;left: 35%;top: 75%;
+    width: 70%;
+    height: 15%;
+}
+.cloud{
+    position: absolute;left: 55%;top: 85%;
+    
+}
+.burger{
+    position: absolute;left: 3%;
+    cursor: pointer;
+    
+}
+.burger div{
+    width: 30px;
+    height: 4px;
+    margin: 4px;
+    background-color: white;
+}
+.nav-active{
+    transform: translateX(0%);
+}
+
