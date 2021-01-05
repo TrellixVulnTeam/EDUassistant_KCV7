@@ -67,7 +67,7 @@ function createWindow () {
     })
 
     mainWindow.on('closed', function () {
-    mainWindow = null                                               // Kad sve prestane s radom glavni prozor postaje null
+        mainWindow = null                                               // Kad sve prestane s radom glavni prozor postaje null
     })                                                              // kako aplikacija nebi nastavila raditi u pozadini
 }
 
@@ -99,7 +99,14 @@ ipc.on('op_settings', () => {
 });
 
 ipc.on('op_teams', () => {
-    prikaz.webContents.loadURL('https://teams.microsoft.com');
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'my_tasks/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
+    mainWindow.removeBrowserView(prikaz);
 });
 
 ipc.on('op_yammer', () => {
@@ -124,6 +131,50 @@ ipc.on('op_excel', () => {
 
 ipc.on('op_cloud', () => {
     prikaz.webContents.loadURL('https://onedrive.live.com');
+});
+
+/* ####################################################################################################### */
+// Ovaj dio je za testiranje novih stvari koje trebaju IPC komunikaciju!
+
+ipc.on('test', () => {
+    console.log("TEST 1 2 3");
+    console.log("TEST 3 2 1");
+})
+
+/* ####################################################################################################### */
+// Otvaranje i zatvaranje prozora za stvaranje zadataka
+
+let taskWinOpened = false;
+let taskWin;
+
+ipc.on('open_task_creation', () => {
+    if(!taskWinOpened){
+        taskWin = new BrowserWindow({parent: mainWindow, webPreferences:{nodeIntegration: true}});
+        taskWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tasks/popup_win/form.html'),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+        taskWin.on('closed', () => {
+            taskWin = null;
+            taskWinOpened = false;
+        });
+        taskWinOpened = true;
+    }
+});
+
+ipc.on('reload-req', () => {
+    console.log("Reloading");
+    taskWin.close();
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'my_tasks/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
 });
 
 /* ####################################################################################################### */
