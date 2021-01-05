@@ -1,19 +1,28 @@
 # EDU Assistant
 
-Pokretanje programa "npm run electron"
+Running the app? Use **npm run electron**
 
 # Contact
 
-If you have an idea or improvement contact me at doslicivan03@gmail.com
+If you have an idea or improvement contact me at ***doslicivan03@gmail.com***
 
-# Every lib used
+# Update 05.01.2021.
 
-Azure - "npm install azure"
+**MyTasks** 1.0 *implemented*
 
-Morgan - "npm install morgan"
+### MyTask - comming features
 
-jquery - "npm install jquery"
+- Opening and solving tasks
+- Accessing mail and tools for solving tasks fast
+- Much more little stuff that makes big problems easy
 
-express - "npm install express"
+# COMMING SOON
 
-# Have fun programming!
+### Things comming in next update
+
+- Staff tab for all your professors
+- MyTools tab for accessing every app you need in your schoolwork
+
+### OTHER THINGS ARE STILL A MISTERY
+
+# Have fun schooling!
