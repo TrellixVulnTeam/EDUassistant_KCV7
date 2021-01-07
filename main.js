@@ -10,7 +10,7 @@
 /* ####################################################################################################### */
 
 // Osnovne varijable za stvaranje prozora, prikaza web sučelja i electron
-const {app, BrowserWindow, BrowserView} = require('electron')
+const {app, BrowserWindow, BrowserView, electron} = require('electron')
 const url = require("url");
 const path = require("path");
 require('jquery');
@@ -133,6 +133,19 @@ ipc.on('op_cloud', () => {
     prikaz.webContents.loadURL('https://onedrive.live.com');
 });
 
+ipc.on('op_mainwin', () => {
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'm_inf/index.html'),
+            protocol: "file:",
+            slashes: true
+        })
+        );
+
+    mainWindow.addBrowserView(prikaz);
+    prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });
+})
+
 /* ####################################################################################################### */
 // Ovaj dio je za testiranje novih stvari koje trebaju IPC komunikaciju!
 
@@ -178,3 +191,73 @@ ipc.on('reload-req', () => {
 });
 
 /* ####################################################################################################### */
+
+// Otvaranje i zatvaranje prozora zadatka
+
+const renderer = require('electron').ipcRenderer;
+
+let taskSolvingWinOpened = false;
+let taskSolvingWin;
+let taskSolvingView;
+let lastTaskTitle;
+
+ipc.on('create_task_win', (e, title) => {
+    if(!taskSolvingWinOpened){
+        lastTaskTitle = title;
+        taskSolvingWin = new BrowserWindow({
+            parent: mainWindow,
+            width: 1280,
+            height: 720,
+            webPreferences:{nodeIntegration: true}});
+
+        taskSolvingWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tasks/task_win/index.html'),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+
+        taskSolvingView = new BrowserView({
+            webPreferences: {
+            nodeIntegration: false,
+            enableRemoteModule: true,
+            webSecurity: false, 
+            javascript:true,
+            contextIsolation: true
+        }});
+
+        taskSolvingWin.addBrowserView(taskSolvingView);
+        taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
+        taskSolvingView.setAutoResize({ width: true, height: false}); 
+        taskSolvingView.webContents.loadURL('https://mail.google.com');
+
+        taskSolvingWin.on('closed', () => {
+            taskSolvingWin = null;
+            taskSolvingWinOpened = false;
+        });
+
+        taskSolvingWinOpened = true;
+    }
+});
+
+ipc.on("content_request", (e, arg) => {
+    console.log(arg);
+    e.returnValue = lastTaskTitle;
+})
+
+/* ####################################################################################################### */
+
+// Otvaranje staff prozora
+
+ipc.on('op_staff', () => {
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'staff/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
+
+    mainWindow.removeBrowserView(prikaz);
+})

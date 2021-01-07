@@ -88,6 +88,9 @@ function createTask(title, subject, dateValue, professor, type){
     deleteButt.addEventListener('click', deleteTask);
     tagsDiv.appendChild(deleteButt);
 
+    opis.setAttribute("task-title", title);
+    opis.addEventListener('click', openTaksWin);
+
     document.getElementById("card-place").appendChild(article);
 };
 
@@ -96,6 +99,10 @@ function deleteTask(e){
         deleteFromLS(e.target.getAttribute("task-title"));
         e.currentTarget.parentNode.parentNode.remove();
     }
+}
+
+function openTaksWin(e){
+    ipc.send('create_task_win', e.target.getAttribute("task-title"));
 }
 
 
@@ -132,3 +139,36 @@ function deleteFromLS(taskItem){
 }
 
 onLoad();
+
+// Menu part
+
+var edn_button  = document.querySelector('.ednevnik');
+var tms_button  = document.querySelector('.teams');
+var ymr_button  = document.querySelector('.yammer');
+var sett_button = document.querySelector('.settings');
+var staff_button = document.querySelector('.staff');
+
+edn_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
+    ipc.send('op_ednevnik');
+});
+
+sett_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
+    ipc.send('op_settings');
+})
+
+tms_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
+    ipc.send('op_teams');
+})
+
+ymr_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
+    ipc.send('op_yammer');
+})
+
+staff_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
+    ipc.send('op_staff');
+})

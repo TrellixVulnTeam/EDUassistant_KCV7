@@ -26,6 +26,14 @@ body {
     margin-right: auto;
 }
 
+.sidebar img:hover{
+    filter: opacity(50%);
+}
+
+.sidebar img:active{
+    filter: opacity(100%);
+}
+
 .button-section{
     position: absolute;right:10%;top: 5%;
     font-style: normal;

@@ -6,22 +6,33 @@ Running the app? Use **npm run electron**
 
 If you have an idea or improvement contact me at ***doslicivan03@gmail.com***
 
-# Update 05.01.2021.
+# Update 07.01.2021.
 
-**MyTasks** 1.0 *implemented*
+**MyTasks Solving** *prototype implemented*
 
-### MyTask - comming features
+### MyTask - Update News
 
-- Opening and solving tasks
-- Accessing mail and tools for solving tasks fast
-- Much more little stuff that makes big problems easy
+- Full creating and deleting tasks supported
+- Task solving window when you press task title
+- Task solving window gets all info about task in upper left corner
+
+### Other Update News
+
+- Implemented Graphical part for Staff
+- Fixed all IPC issues
+- Removed unneeded programs from sidebar
 
 # COMMING SOON
 
-### Things comming in next update
+### Things comming in next updates
 
-- Staff tab for all your professors
+- Adding MyTasks icon for now access through Teams icon
+- Dropdown selector with professors while creating task (*part of Staff update*)
+- Staff tab for all your professors - *functional not just GUI*
 - MyTools tab for accessing every app you need in your schoolwork
+- Adding user selected tools/programs in task solving windows (*part of MyTools update*)
+- Totaly removing Angular from project *** D: ***
+- A lot of little bug fixes and small features to come *** :D ***
 
 ### OTHER THINGS ARE STILL A MISTERY
 

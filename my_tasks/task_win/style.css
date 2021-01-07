@@ -4,13 +4,10 @@ html, body {
     height: 100%; 
     padding: 0; 
     margin: 0; 
-    color:black;
     font-family: 'DM Mono', monospace;
 }
 
-h2 {
-    margin: 2px;
-}
+
 
 p {
     font-size: 12px;
@@ -23,12 +20,22 @@ div {
 }
 
 .task_desc {
-    width: 25%;
-    height: 20%;
+    width: 33%;
+    height: 23.9%;
+    background-color:  rgb(252, 252, 252);
+    border-bottom: 1px solid rgb(212, 212, 212);    
+}
+
+.task_text{
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    text-align: center;
 }
 
 .cpy{
     transition: transform 500ms;
+    
 }
 
 .cpy:hover {
@@ -43,28 +50,43 @@ div {
 }
 
 .contact {
-    width: 25%;
-    height: 75%;
-
+    width: 33%;
+    height: 23.9%;
+    background-color:  rgb(252, 252, 252);
+    text-align: center;
+    border-bottom: 1px solid rgb(212, 212, 212);
 }
 
-.contact img {
-    vertical-align: middle;
+.contact_text{
+    width: 100%;
+    height: auto;
+    text-align: center;
 }
 
-.contact li {
-    padding: 0;
-    margin: 0 0 6px 0;
+h2{
+    margin-bottom: 1px;
+    color: gray;
+}
+
+
+
+.contact ul {
+    text-align: left;
+    margin-left: 20%;
+    margin-bottom: 15px;
+    list-style-type: none;
 }
 
 .create_new {
-    width: 75%;
-    height: 20%;
+    width: 34%;
+    height: 23.9%;
+    background-color:  rgb(252, 252, 252);
+    border-bottom: 1px solid rgb(212, 212, 212);    
 }
 
 .mail_display {
-    width: 75%;
-    height: 45%;
+    width: 100%;
+    height: 71%;
 }
 
 .switch_space {
@@ -72,6 +94,7 @@ div {
     height: 5%;
     background: black;
     text-align: right;
+    position: relative;
 }
 
 .switch_space img{
@@ -89,6 +112,8 @@ div {
     width: 100%;
     text-align: center;
     margin-top: 0;
+    margin-bottom: 5px;
+
 }
 
 .cn_lower{
@@ -123,5 +148,5 @@ div {
 
 .home_btn:hover{
     filter: opacity(50%);
-    transition: 500ms;
+    transform: scale(1.1);
 }

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    color:black;
+    font-family: 'DM Mono', monospace;
+}
+
+.staff_part img {
+    height: 10%;
+    vertical-align: middle;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    transition: transform 200ms;
+}
+
+.staff_part img:hover {
+    filter: opacity(50%);
+    transform: scale(1.2);
+}
+
+.staff_part img:active {
+    filter: opacity(100%);
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+    width: 80px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgb(55, 55, 56),rgb(55, 55, 56),rgb(209, 205, 205));
+}
+
+.sidebar img{
+    display: block;
+    padding-top: 20px;
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar img:hover{
+    filter: opacity(50%);
+}
+
+.sidebar img:active{
+    filter: opacity(100%);
+}
+
+.staff_part {
+    margin-left: 80px;
+    padding: 0px 10px;
+}
+
+.gore {
+    text-align: center;
+    color:black;
+    margin-left: 80px;
+    padding: 0px 10px;
+}
