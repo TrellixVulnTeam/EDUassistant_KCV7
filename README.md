@@ -52,7 +52,7 @@ If you have an idea or improvement contact me at ***bithood.business@gmail.com**
 - Adding user selected tools/programs in task solving windows (*part of MyTools update*)
 - Totaly removing Angular from project ***D:***
 - A lot of little bug fixes and small features to come ***:D***
-- Soon I'll start working on commenting the whole source code in English and maybe even translate some variable names to English
+- Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English
 
 ### OTHER THINGS ARE STILL A MISTERY
 
