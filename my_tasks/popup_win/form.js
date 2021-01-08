@@ -5,7 +5,6 @@ ipc = require('electron').ipcRenderer;
 var titleField = document.getElementById('title');
 var subjectField = document.getElementById('subject');
 var dateField = document.getElementById('date');
-var professorField = document.getElementById('professor');
 var typeField = document.getElementById('type');
 var submitButton = document.getElementById('submit_btn');
 
@@ -13,7 +12,7 @@ submitButton.addEventListener('click', () => {
     var title = titleField.value;
     var subject = subjectField.value;
     var date = dateField.value;
-    var professor = professorField.value;
+    var professor = prof_button.innerHTML;
     var type = typeField.value;
 
     var task = {
@@ -36,5 +35,59 @@ submitButton.addEventListener('click', () => {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    ipc.send('reload-req');
+    ipc.send('reload-req', 0);
 });
+
+// Drop Down Part
+
+var prof_button = document.getElementById("show_professors");
+
+prof_button.addEventListener('click', () => {
+    document.getElementById("lista_profesora").classList.toggle("show");
+})
+
+function itemSelected(e) {
+    prof_button.innerHTML = e.target.innerHTML;
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+// Putting Professors into dropdown
+
+function addToDropDown(name){
+    var nameSpace = document.createElement('a');
+
+    var nameTxt = document.createTextNode(name);
+
+    nameSpace.appendChild(nameTxt);
+    nameSpace.addEventListener('click', itemSelected);
+
+    document.getElementById("lista_profesora").appendChild(nameSpace);
+}
+
+function onLoad(){
+    let professors;
+
+    if (localStorage.getItem('professors') === null){
+        professors = [];
+    } else {
+        professors = JSON.parse(localStorage.getItem('professors'));
+    }
+
+    professors.forEach(professor => {
+        addToDropDown(professor.Name);
+    });
+}
+
+onLoad();

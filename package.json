@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
-    "electron": "ng build --base-href ./ && electron ."
+    "electron": "electron ."
   },
   "private": true,
   "dependencies": {

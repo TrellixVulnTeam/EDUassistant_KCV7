@@ -12,6 +12,10 @@ let predmet = document.getElementById("predmet");
 let profesor = document.getElementById("profesor");
 let tip = document.getElementById("tip");
 
+let profesor_public;
+let mail_text = document.getElementById('mail_text');
+let teams_text = document.getElementById('teams_text');
+
 op_gmail_btn.addEventListener('click', () => {
     ipc.send("op_gmail");
 });
@@ -23,6 +27,7 @@ op_webmail_btn.addEventListener('click', () => {
 title = ipc.sendSync("content_request", "received");
 
 function onLoad(){
+    // Task decription part
     let tasks;
 
     if (localStorage.getItem('tasks') === null){
@@ -39,9 +44,55 @@ function onLoad(){
             predmet.innerHTML = "Predmet: "+task.TaskSubject;
             profesor.innerHTML = "Profesor: "+task.TaskProfessor;
             tip.innerHTML = "Tip: "+task.TaskType;
+
+            profesor_public = task.TaskProfessor;
         }
     });
+
+    // Contact info part
+    let professors;
+    if(localStorage.getItem('professors') === null){
+        professors = [];
+    } else {
+        professors = JSON.parse(localStorage.getItem('professors'))
+    }
+
+    professors.forEach(professor => {
+        if(profesor_public === professor.Name){
+            mail_text.innerHTML = professor.Email;
+            teams_text.innerHTML = professor.Teams;
+        }
+    })
 
 }
 
 onLoad();
+
+// Copy to clipboard code
+
+title_copybtn = document.getElementById("title_cpy");
+mail_copybtn = document.getElementById("mail_cpy");
+
+title_copybtn.addEventListener('click', () => {
+    var el = document.createElement('textarea');
+    el.value = title;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+});
+
+mail_copybtn.addEventListener('click', () => {
+    var el = document.createElement('textarea');
+    el.value = mail_text.innerHTML;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+});

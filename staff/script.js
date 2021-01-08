@@ -6,7 +6,7 @@ var edn_button  = document.querySelector('.ednevnik');
 var tms_button  = document.querySelector('.teams');
 var ymr_button  = document.querySelector('.yammer');
 var sett_button = document.querySelector('.settings');
-var staff_button = document.querySelector('.staff');
+var tasks_button = document.querySelector('.tasks');
 
 /* ####################################################################################################### */
 
@@ -33,8 +33,52 @@ ymr_button.addEventListener('click', () => {
     ipc.send('op_yammer');
 })
 
-staff_button.addEventListener('click', () => {
-    ipc.send('op_staff');
+tasks_button.addEventListener('click', () => {
+    ipc.send('op_tasks');
 })
 
 /* ####################################################################################################### */
+
+// Staff stuff
+
+var add_button = document.getElementById("add_btn");
+var professor_list = document.getElementById("popis");
+
+add_button.addEventListener('click', () => {
+    ipc.send('op_professor_addwin');
+});
+
+function createProff(name){
+    var nameSpace = document.createElement('li');
+
+    var profileImg = document.createElement('img');
+    profileImg.setAttribute("src", "icons/prof_ico.png");
+    
+    var nameTxt = document.createTextNode(name);
+    
+    nameSpace.setAttribute("prof-name", name);
+    nameSpace.appendChild(profileImg);
+    nameSpace.appendChild(nameTxt);
+
+    /*nameSpace.addEventListener('click', () => {
+        ipc.send('op_profdet');
+    });*/ // COMMING SOON!
+    
+    professor_list.appendChild(nameSpace);
+}
+
+function onLoad(){
+    let professors;
+
+    if (localStorage.getItem('professors') === null){
+        professors = [];
+    } else {
+        professors = JSON.parse(localStorage.getItem('professors'));
+    }
+
+    professors.forEach(professor => {
+        createProff(professor.Name);
+    });
+}
+
+onLoad();

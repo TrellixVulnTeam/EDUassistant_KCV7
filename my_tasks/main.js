@@ -39,7 +39,7 @@ function createTask(title, subject, dateValue, professor, type){
     author.appendChild(slikaA);
 
     var slika = document.createElement("img");
-    slika.setAttribute("src", "icons/avatar.jpg");
+    slika.setAttribute("src", "icons/prof_ico.png");
     slikaA.appendChild(slika);
 
     var svg = document.createElement("svg");

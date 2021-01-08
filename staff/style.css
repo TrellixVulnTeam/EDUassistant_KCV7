@@ -21,12 +21,11 @@ body {
 }
 
 .staff_part img:hover {
-    filter: opacity(50%);
     transform: scale(1.2);
 }
 
 .staff_part img:active {
-    filter: opacity(100%);
+    filter: opacity(50%);
 }
 
 .sidebar{

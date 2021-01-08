@@ -13,6 +13,7 @@
 const {app, BrowserWindow, BrowserView, electron} = require('electron')
 const url = require("url");
 const path = require("path");
+const shell = require('electron').shell;
 require('jquery');
 require('@angular-devkit/build-angular');
 require('morgan');
@@ -99,6 +100,10 @@ ipc.on('op_settings', () => {
 });
 
 ipc.on('op_teams', () => {
+    shell.openPath('C:/Users/Windows 10/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Microsoft Teams.lnk');
+})
+
+ipc.on('op_tasks', () => {
     mainWindow.loadURL(
         url.format({
             pathname: path.join(__dirname, 'my_tasks/index.html'),
@@ -110,7 +115,7 @@ ipc.on('op_teams', () => {
 });
 
 ipc.on('op_yammer', () => {
-    prikaz.webContents.loadURL('https://www.yammer.com/o365.skole.hr/#/home');
+    //prikaz.webContents.loadURL(' HERE THE URL TO THE .EXE FILE WILL BE PUT ');
 });
 
 ipc.on('op_gmail', () => {
@@ -162,7 +167,16 @@ let taskWin;
 
 ipc.on('open_task_creation', () => {
     if(!taskWinOpened){
-        taskWin = new BrowserWindow({parent: mainWindow, webPreferences:{nodeIntegration: true}});
+        taskWin = new BrowserWindow({
+            parent: mainWindow,
+            frame: false,
+            webPreferences:{
+                  nodeIntegration: true
+                },
+            resizable: false,
+            width: 480,
+            height: 660
+            });
         taskWin.loadURL(
             url.format({
                 pathname: path.join(__dirname, 'my_tasks/popup_win/form.html'),
@@ -174,20 +188,31 @@ ipc.on('open_task_creation', () => {
             taskWin = null;
             taskWinOpened = false;
         });
+        
         taskWinOpened = true;
     }
 });
 
-ipc.on('reload-req', () => {
-    console.log("Reloading");
+ipc.on('reload-req', (e, request_number) => {
     taskWin.close();
-    mainWindow.loadURL(
-        url.format({
-            pathname: path.join(__dirname, 'my_tasks/index.html'),
-            protocol: "file:",                                     
-            slashes: true
-        })
-        );
+    if(request_number === 0){
+        mainWindow.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tasks/index.html'),
+                protocol: "file:",                                     
+                slashes: true
+            })
+            );
+    } else if(request_number === 1){
+        mainWindow.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'staff/index.html'),
+                protocol: "file:",                                     
+                slashes: true
+            })
+            );
+    }
+    
 });
 
 /* ####################################################################################################### */
@@ -208,7 +233,8 @@ ipc.on('create_task_win', (e, title) => {
             parent: mainWindow,
             width: 1280,
             height: 720,
-            webPreferences:{nodeIntegration: true}});
+            webPreferences:{nodeIntegration: true}
+        });
 
         taskSolvingWin.loadURL(
             url.format({
@@ -260,4 +286,34 @@ ipc.on('op_staff', () => {
         );
 
     mainWindow.removeBrowserView(prikaz);
+})
+
+/* ####################################################################################################### */
+
+// Staff - Add Professor win
+
+ipc.on('op_professor_addwin', () => {
+    if(!taskWinOpened){
+        taskWin = new BrowserWindow({
+            parent: mainWindow,
+            webPreferences:{
+                nodeIntegration: true
+            },
+            frame: false,
+            width: 480,
+            height: 535
+        });
+        taskWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'staff/popup_win/form.html'),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+        taskWin.on('closed', () => {
+            taskWin = null;
+            taskWinOpened = false;
+        });
+        taskWinOpened = true;
+    }
 })

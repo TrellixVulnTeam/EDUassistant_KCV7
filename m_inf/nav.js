@@ -23,6 +23,7 @@ var edn_button  = document.querySelector('.ednevnik');
 var tms_button  = document.querySelector('.teams');
 var ymr_button  = document.querySelector('.yammer');
 var sett_button = document.querySelector('.settings');
+var tasks_button = document.querySelector('.tasks');
 var staff_button = document.querySelector('.staff');
 
 
@@ -50,6 +51,10 @@ ymr_button.addEventListener('click', () => {
 
 staff_button.addEventListener('click', () => {
     ipc.send('op_staff');
+})
+
+tasks_button.addEventListener('click', () => {
+    ipc.send('op_tasks');
 })
 
 /* ####################################################################################################### */
