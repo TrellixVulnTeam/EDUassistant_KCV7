@@ -29,15 +29,15 @@ If you have an idea or improvement contact me at ***bithood.business@gmail.com**
 ### Staff - Update News
 
 - You can add your professors
-- You can asign some contact info and subjet to them
-- It is all saved into localStorage
+- You can asign some contact info and subject to them
+- It is all saved into local storage
 
 ### MyTask - Update News
 
 - Task creation window is now frameless and resolution is adjusted
 - Professors are now selected with dropdown
 - Professors are connected with Staff so you can access their info
-- While solving task now you can press buttons to copy title and professors name
+- While solving task now you can press buttons to copy title or professors name
 
 ### Other Update News
 
@@ -52,7 +52,7 @@ If you have an idea or improvement contact me at ***bithood.business@gmail.com**
 - Adding user selected tools/programs in task solving windows (*part of MyTools update*)
 - Totaly removing Angular from project ***D:***
 - A lot of little bug fixes and small features to come ***:D***
-- Soon I'll start working on commeting the whole source code in English and maybe even translate some variable names to English
+- Soon I'll start working on commenting the whole source code in English and maybe even translate some variable names to English
 
 ### OTHER THINGS ARE STILL A MISTERY
 
