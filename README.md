@@ -24,7 +24,7 @@ If you have an idea or improvement contact me at ***bithood.business@gmail.com**
 
 # Update 08.01.2021.
 
-**Staff Feture Now Available**
+**Staff Feature Now Available**
 
 ### Staff - Update News
 
