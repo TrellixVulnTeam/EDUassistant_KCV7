@@ -42,8 +42,7 @@ Teams or Yammer
 - Adding a way for your tools to get their application icons instead of 🔧 when you add them 
 - Adding Teams support, somehow IDK, I can't promise you anything
 - Adding settings, which are to come along side redesing so you'll be able to ***personalize your app***
-- The Angular part will finaly be removed because it isn't used once 😐
-- Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see
+- Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see 😐
 
 ### Where to download the app
 
