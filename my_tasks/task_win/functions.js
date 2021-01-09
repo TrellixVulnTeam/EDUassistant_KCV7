@@ -1,4 +1,5 @@
 const ipc = require('electron').ipcRenderer;
+const shell = require('electron').shell;
 
 const op_gmail_btn = document.getElementById("GmailBtn");
 const op_webmail_btn = document.getElementById("WebmailBtn");
@@ -12,16 +13,18 @@ let predmet = document.getElementById("predmet");
 let profesor = document.getElementById("profesor");
 let tip = document.getElementById("tip");
 
+var dropdown = document.getElementById("tools_list");
+
 let profesor_public;
 let mail_text = document.getElementById('mail_text');
 let teams_text = document.getElementById('teams_text');
 
 op_gmail_btn.addEventListener('click', () => {
-    ipc.send("op_gmail");
+    ipc.send("op_gmail_view");
 });
 
 op_webmail_btn.addEventListener('click', () => {
-    return;
+    ipc.send("op_webmail_view");
 });
 
 title = ipc.sendSync("content_request", "received");
@@ -64,6 +67,18 @@ function onLoad(){
         }
     })
 
+    let tools;
+
+    if(localStorage.getItem('tools') === null){
+        tools = [];
+    } else {
+        tools = JSON.parse(localStorage.getItem('tools'));
+    }
+
+    tools.forEach(tool => {
+        addToDrop(tool.name, tool.path);
+    })
+
 }
 
 onLoad();
@@ -96,3 +111,50 @@ mail_copybtn.addEventListener('click', () => {
     document.execCommand('copy');
     document.body.removeChild(el);
 });
+
+// Button icons
+
+var powerpoint = document.getElementById("ppt");
+var word = document.getElementById("wrd");
+var excel = document.getElementById("xcl");
+var mytools = document.getElementById("mytools");
+
+let viewon = true;
+
+powerpoint.addEventListener('click', () => {
+    ipc.send('op_powerpoint');
+})
+
+word.addEventListener('click', () => {
+    ipc.send('op_word');
+})
+
+excel.addEventListener('click', () => {
+    ipc.send('op_excel');
+})
+
+mytools.addEventListener('click', () => {
+    dropdown.classList.toggle("show");
+    if(viewon){
+        ipc.send("disable_task_view");
+        viewon = false;
+    } else {
+        ipc.send("enable_task_view");
+        viewon = true;
+    }
+})
+
+function addToDrop(name, path){
+    var a = document.createElement('a');
+    var aTxt = document.createTextNode(name);
+
+    a.appendChild(aTxt);
+
+    a.addEventListener('click', () => {
+        shell.openPath(path);
+        dropdown.classList.toggle("show");
+        ipc.send("enable_task_view");
+    });
+
+    dropdown.appendChild(a);
+}

@@ -7,6 +7,7 @@ var tms_button  = document.querySelector('.teams');
 var ymr_button  = document.querySelector('.yammer');
 var sett_button = document.querySelector('.settings');
 var tasks_button = document.querySelector('.tasks');
+var tools_button = document.querySelector('.tools');
 
 /* ####################################################################################################### */
 
@@ -20,7 +21,6 @@ edn_button.addEventListener('click', () => {
 });
 
 sett_button.addEventListener('click', () => {
-    ipc.send('op_mainwin');
     ipc.send('op_settings');
 })
 
@@ -35,6 +35,10 @@ ymr_button.addEventListener('click', () => {
 
 tasks_button.addEventListener('click', () => {
     ipc.send('op_tasks');
+})
+
+tools_button.addEventListener('click', () => {
+    ipc.send('op_tools');
 })
 
 /* ####################################################################################################### */

@@ -1,7 +1,7 @@
 const { setSyntheticTrailingComments } = require('typescript');
 
 const remote = require('electron').remote;
-ipc = require('electron').ipcRenderer;
+const ipc = require('electron').ipcRenderer;
 var nameField = document.getElementById('name');
 var subjectField = document.getElementById('subject');
 var emailField = document.getElementById('email');

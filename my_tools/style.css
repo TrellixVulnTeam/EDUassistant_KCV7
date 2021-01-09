@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+body {
+    background-color: white;
+    color:black;
+    font-family: 'DM Mono', monospace;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+    width: 80px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgb(55, 55, 56),rgb(55, 55, 56),rgb(209, 205, 205));
+}
+
+.sidebar img{
+    display: block;
+    padding-top: 20px;
+    height: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar img:hover{
+    filter: opacity(50%);
+}
+
+.sidebar img:active{
+    filter: opacity(100%);
+}
+
+.tools_part {
+    margin-left: 80px;
+    padding: 0px 10px;
+}
+
+.gore {
+    text-align: center;
+    color:black;
+    margin-left: 80px;
+    padding: 0px 10px;
+    margin-bottom: 100px;
+}
+
+
+/* Cards */
+
+.card {
+    display: inline-block;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    transition: transform 300ms;
+    text-align: center;
+    
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card img {
+    transform: scale(0.5) translateX(-19%) translateY(-20%);
+}
+
+.card img:hover {
+    filter: opacity(100%);
+}
+
+.card img:active {
+    filter: opacity(50%);
+}
+
+.add_btn {
+    display: inline-block;
+    transition: transform 300ms;
+    transform: scale(0.5) translateY(-20%);
+}
+
+.add_btn:hover {
+    transform: scale(0.6);
+    filter: opacity(100%);
+}
+
+.add_btn:active {
+    filter: opacity(50%);
+}
+
+.ico {
+    margin: none;
+}

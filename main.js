@@ -88,6 +88,8 @@ app.on('activate', function () {
 
 const ipc = require('electron').ipcMain;        // IPC (Inter-Process Comunication) koristi se za komunikaciju procesa
 const remote = require('electron').remote;      // unutar aplikacije ovo je IPC.main koji prima sve zahtjeve ostalih IPC
+let program_win;
+let program_win_opened = false;
 
 /* ####################################################################################################### */
 
@@ -96,11 +98,23 @@ ipc.on('op_ednevnik', () => {
 });                                                         // URL ovisno o buttonu koji je stisnut
 
 ipc.on('op_settings', () => {
-    console.log("Settings unavailable at the time!");
+    dialog.showMessageBox(null, {
+        type: 'info',
+        defaultId: 2,
+        title: 'Settings Unavailable!',
+        message: 'Settings are not yet avaliable!',
+        detail: 'There is nothing to do in settings yet.'
+    });
 });
 
 ipc.on('op_teams', () => {
-    shell.openPath('C:/Users/Windows 10/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Microsoft Teams.lnk');
+    dialog.showMessageBox(null, {
+        type: 'info',
+        defaultId: 1,
+        title: 'Teams Unavailable!',
+        message: 'Teams are not yet avaliable!',
+        detail: 'Working on it soon I will make it... :('
+    });
 })
 
 ipc.on('op_tasks', () => {
@@ -115,23 +129,95 @@ ipc.on('op_tasks', () => {
 });
 
 ipc.on('op_yammer', () => {
-    //prikaz.webContents.loadURL(' HERE THE URL TO THE .EXE FILE WILL BE PUT ');
+    prikaz.webContents.loadURL('https://yammer.com');
 });
 
 ipc.on('op_gmail', () => {
-    prikaz.webContents.loadURL('https://mail.google.com');
+    if(!program_win_opened){
+        program_win = new BrowserWindow({
+            parent: mainWindow,
+            frame: true,
+            webPreferences:{
+                  nodeIntegration: false,
+                  contextIsolation: true
+                },
+            resizable: false,
+            width: 1280,
+            height: 720
+        });
+        program_win.loadURL('https://mail.google.com')
+        program_win.on('closed', () => {
+            program_win = null;
+            program_win_opened = false;
+        });
+        program_win_opened = true;
+    }
 });
 
 ipc.on('op_word', () => {
-    prikaz.webContents.loadURL('https://www.office.com/launch/word');
+    if(!program_win_opened){
+        program_win = new BrowserWindow({
+            parent: mainWindow,
+            frame: true,
+            webPreferences:{
+                  nodeIntegration: false,
+                  contextIsolation: true
+                },
+            resizable: false,
+            width: 1280,
+            height: 720
+        });
+        program_win.loadURL('https://www.office.com/launch/word')
+        program_win.on('closed', () => {
+            program_win = null;
+            program_win_opened = false;
+        });
+        program_win_opened = true;
+    }
 });
 
 ipc.on('op_powerpoint', () => {
-    prikaz.webContents.loadURL('https://www.office.com/launch/powerpoint');
+    if(!program_win_opened){
+        program_win = new BrowserWindow({
+            parent: mainWindow,
+            frame: true,
+            webPreferences:{
+                  nodeIntegration: false,
+                  contextIsolation: true
+                },
+            resizable: false,
+            width: 1280,
+            height: 720
+        });
+        program_win.loadURL('https://www.office.com/launch/powerpoint')
+        program_win.on('closed', () => {
+            program_win = null;
+            program_win_opened = false;
+        });
+        program_win_opened = true;
+    }
 });
 
 ipc.on('op_excel', () => {
-    prikaz.webContents.loadURL('https://www.office.com/launch/excel');
+    if(!program_win_opened){
+        program_win = new BrowserWindow({
+            parent: mainWindow,
+            frame: true,
+            webPreferences:{
+                  nodeIntegration: false,
+                  contextIsolation: true
+                },
+            resizable: false,
+            width: 1280,
+            height: 720
+        });
+        program_win.loadURL('https://www.office.com/launch/excel')
+        program_win.on('closed', () => {
+            program_win = null;
+            program_win_opened = false;
+        });
+        program_win_opened = true;
+    }
 });
 
 ipc.on('op_cloud', () => {
@@ -149,6 +235,17 @@ ipc.on('op_mainwin', () => {
 
     mainWindow.addBrowserView(prikaz);
     prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });
+})
+
+ipc.on('op_tools', () => {
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'my_tools/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
+    mainWindow.removeBrowserView(prikaz);
 })
 
 /* ####################################################################################################### */
@@ -211,6 +308,14 @@ ipc.on('reload-req', (e, request_number) => {
                 slashes: true
             })
             );
+    } else if(request_number === 2){
+        mainWindow.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tools/index.html'),
+                protocol: "file:",                                     
+                slashes: true
+            })
+            );
     }
     
 });
@@ -220,6 +325,9 @@ ipc.on('reload-req', (e, request_number) => {
 // Otvaranje i zatvaranje prozora zadatka
 
 const renderer = require('electron').ipcRenderer;
+const { dialog } = require('electron/main');
+
+let lastView = 'https://mail.google.com';
 
 let taskSolvingWinOpened = false;
 let taskSolvingWin;
@@ -272,6 +380,27 @@ ipc.on("content_request", (e, arg) => {
     e.returnValue = lastTaskTitle;
 })
 
+ipc.on("disable_task_view", () => {
+    taskSolvingWin.removeBrowserView(taskSolvingView);
+})
+
+ipc.on("enable_task_view", () => {
+    taskSolvingWin.addBrowserView(taskSolvingView);
+    taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
+    taskSolvingView.setAutoResize({ width: true, height: false}); 
+    taskSolvingView.webContents.loadURL(lastView);
+})
+
+ipc.on("op_gmail_view", () => {
+    taskSolvingView.webContents.loadURL('https://mail.google.com');
+    lastView = 'https://mail.google.com';
+})
+
+ipc.on("op_webmail_view", () => {
+    taskSolvingView.webContents.loadURL('https://webmail.carnet.hr');
+    lastView = 'https://webmail.carnet.hr';
+})
+
 /* ####################################################################################################### */
 
 // Otvaranje staff prozora
@@ -306,6 +435,37 @@ ipc.on('op_professor_addwin', () => {
         taskWin.loadURL(
             url.format({
                 pathname: path.join(__dirname, 'staff/popup_win/form.html'),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+        taskWin.on('closed', () => {
+            taskWin = null;
+            taskWinOpened = false;
+        });
+        taskWinOpened = true;
+    }
+})
+
+/* ####################################################################################################### */
+
+// MyTools - Add tool win
+
+ipc.on('op_tools_adder', () => {
+    if(!taskWinOpened){
+        taskWin = new BrowserWindow({
+            parent: mainWindow,
+            webPreferences:{
+                nodeIntegration: true,
+                enableRemoteModule: true
+            },
+            frame: false,
+            width: 480,
+            height: 535
+        });
+        taskWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tools/add_win/index.html'),
                 protocol: "file:",
                 slashes: true
             })

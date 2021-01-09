@@ -25,6 +25,7 @@ var ymr_button  = document.querySelector('.yammer');
 var sett_button = document.querySelector('.settings');
 var tasks_button = document.querySelector('.tasks');
 var staff_button = document.querySelector('.staff');
+var tools_button = document.querySelector('.tools');
 
 
 /* ####################################################################################################### */
@@ -55,6 +56,10 @@ staff_button.addEventListener('click', () => {
 
 tasks_button.addEventListener('click', () => {
     ipc.send('op_tasks');
+})
+
+tools_button.addEventListener('click', () => {
+    ipc.send('op_tools');
 })
 
 /* ####################################################################################################### */

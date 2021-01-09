@@ -1,64 +1,59 @@
-# EDU Assistant
+# EDU Assistant 📚
 
-Running the app? Use **npm run electron**
+Running the app from terminal? Use **npm run electron**
 
 # Contact
 
-If you have an idea or improvement contact me at ***bithood.business@gmail.com***
+If you have an idea or improvement contact us at ***bithood.business@gmail.com***
 
-# Update 07.01.2021. !REMOVING THIS PART IN THE NEXT PATCH!
+Any questions about the code? You can directly contact ***doslicivan03@gmail.com***
 
-**MyTasks Solving** *prototype implemented*
+# **TEST RELEASE 09.01.2021.**
 
-### MyTask - Update News
+So, the first release is here and in a week or so I am planning on pushing the first official release. When I gather
+some information from testing and trying to use the app in real life like situations.
 
-- Full creating and deleting tasks supported
-- Task solving window when you press task title
-- Task solving window gets all info about task in upper left corner
+### NOW AVAILABLE
 
-### Other Update News
+- MyTasks
+    - Creating and deleting your tasks
+    - Solving them when you click on their card
+    - Sending mail directly to your professor
+    - You have quick access to your professors contact mail
 
-- Implemented Graphical part for Staff
-- Fixed all IPC issues
-- Removed unneeded programs from sidebar
+- Staff
+    - Creating a list of your professors
+    - Adding contact info for your professors
 
-# Update 08.01.2021.
+- MyTools
+    - Adding your tools (apps that you want a quick access to)
 
-**Staff Feature Now Available**
+- Other things (This is mostly for Croatian users/ pa ćemo ovo na hrvatskom)
+    - Brz pristup eDnevniku i svemu što on pruža
+    - MyTasks dio vam pruža i mogućnost korištenja Carnet Webmaila ako želite
+    - Žao mi je što nam Carnet brani da koristimo svoje školske accounte za sve ovo, ali vjerujte mi
+    radim svim silama na tome da nam dopuste to
 
-### Staff - Update News
+### Things to come in future
 
-- You can add your professors
-- You can asign some contact info and subject to them
-- It is all saved into local storage
+- ***Full Redesign*** - We are planing to make this more modern and nice
+- Adding a profesor profile window along side a profile image that the app will get from
+Teams or Yammer
+- Adding a way for your tools to get their application icons instead of 🔧 when you add them 
+- Adding Teams support, somehow IDK, I can't promise you anything
+- Adding settings, which are to come along side redesing so you'll be able to ***personalize your app***
+- The Angular part will finaly be removed because it isn't used once 😐
+- Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see
 
-### MyTask - Update News
+#### For now there is some bug fixing and testing to be done
 
-- Task creation window is now frameless and resolution is adjusted
-- Professors are now selected with dropdown
-- Professors are connected with Staff so you can access their info
-- While solving task now you can press buttons to copy title or professors name
+# Short message from dev
 
-### Other Update News
+***It is here!*** The test release of an app is done. After a lot of work, I hope you will find a bunch of bugs in it (**sarcastically said**). Now there are all of the initially planned features (MyTools, MyTasks, Staff). Nothing is done yet a lot of work is left especially for my design crew who are planning on **completely redesigning the app**. That means a lot of stuff for me also because you know how that goes usually. Also, there is a whole list of features I am planning to add in the future. For now, I’ll take some rest and let them design what we need. Feel free to report any bugs if you see them or if you have an idea contact mail is somewhere above this message. See ya soon!! 😎
 
-- Some little features are fixed and adjusted
-- Added MyTasks icon to the sidebar
-
-# COMMING SOON
-
-### Things comming in next updates
-
-- MyTools tab for accessing every app you need in your schoolwork
-- Adding user selected tools/programs in task solving windows (*part of MyTools update*)
-- Totaly removing Angular from project ***D:***
-- A lot of little bug fixes and small features to come ***:D***
-- Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English
-
-### OTHER THINGS ARE STILL A MISTERY
+Ivan Doslic, back-end dev 🤓
 
 # The Team
-
-I forgot to name the people who contributed to this project (graphical wise)
 
 ## Front end developer (HTML|CSS|Javascript)
 

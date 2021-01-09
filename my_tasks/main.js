@@ -147,6 +147,7 @@ var tms_button  = document.querySelector('.teams');
 var ymr_button  = document.querySelector('.yammer');
 var sett_button = document.querySelector('.settings');
 var staff_button = document.querySelector('.staff');
+var tools_button = document.querySelector('.tools');
 
 edn_button.addEventListener('click', () => {
     ipc.send('op_mainwin');
@@ -154,7 +155,6 @@ edn_button.addEventListener('click', () => {
 });
 
 sett_button.addEventListener('click', () => {
-    ipc.send('op_mainwin');
     ipc.send('op_settings');
 })
 
@@ -171,4 +171,8 @@ ymr_button.addEventListener('click', () => {
 staff_button.addEventListener('click', () => {
     ipc.send('op_mainwin');
     ipc.send('op_staff');
+})
+
+tools_button.addEventListener('click', () => {
+    ipc.send('op_tools');
 })

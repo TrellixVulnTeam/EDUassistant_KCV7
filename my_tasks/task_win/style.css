@@ -124,7 +124,7 @@ h2{
 }
 
 .cn_lower img {
-    height:50%;
+    height:35%;
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
@@ -149,4 +149,50 @@ h2{
 .home_btn:hover{
     filter: opacity(50%);
     transform: scale(1.1);
+}
+
+/* DROPDOWN */
+
+.dropdown-content {
+    display: none;
+    width: 30%;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    height: 100px;
+    overflow-y: scroll;
+  }
+  
+  /* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+  
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+ background: #888;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
