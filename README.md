@@ -45,6 +45,11 @@ Teams or Yammer
 - The Angular part will finaly be removed because it isn't used once 😐
 - Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see
 
+### Where to download the app
+
+Just look above for the releases part on your right there will be .zip file with all you need and just run the app from the .exe when
+you unzip 😄
+
 #### For now there is some bug fixing and testing to be done
 
 # Short message from dev

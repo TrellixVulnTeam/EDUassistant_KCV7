@@ -15,9 +15,6 @@ const url = require("url");
 const path = require("path");
 const shell = require('electron').shell;
 require('jquery');
-require('@angular-devkit/build-angular');
-require('morgan');
-require('@angular/cli');
 
 /* ####################################################################################################### */
 
@@ -47,9 +44,6 @@ function createWindow () {
         }});
 
     prikaz.require = require('jquery');                             // Prikaz zahtjeva jquery kako bi radio
-    prikaz.require = require('@angular-devkit/build-angular');      // Prikaz zahtjeva angular kako bi radio
-    prikaz.require = require('express');                            // Većina aplikacija stvorena je s pomoću angulara,
-    prikaz.require = require('morgan');                             // a jquery se koristi na serverima istražite ako vas zanima
 
     mainWindow.addBrowserView(prikaz);                              // Ubacivanje prikaza u glavni prozor
     prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });   // Postaljanje pozicije i rezolucije prikaza u glavnom prozoru
