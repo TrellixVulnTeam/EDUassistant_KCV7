@@ -13,6 +13,9 @@ Any questions about the code? You can directly contact ***doslicivan03@gmail.com
 After releasing first alpha the other day I gained a few infromation about the app bugs and errors. They are mostly
 fixed now. Also there is a big thing added to the app.
 
+Release : [Download](https://github.com/ivandoslic/EDUassistant/releases/tag/v0.2-alpha)
+You only need *v0.2.-aplha.zip* everything is in it. 😄
+
 ## v0.2.-alpha PRESENTS ***Microsoft Teams***
 
 As of this update the MS Teams are available within the app. If you followed from the start you know that Teams
