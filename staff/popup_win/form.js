@@ -7,6 +7,7 @@ var subjectField = document.getElementById('subject');
 var emailField = document.getElementById('email');
 var teamsField = document.getElementById('teams');
 var submitButton = document.getElementById('submit_btn');
+var exit = document.getElementById('exit_btn');
 
 submitButton.addEventListener('click', () => {
     var name = nameField.value;
@@ -33,5 +34,9 @@ submitButton.addEventListener('click', () => {
 
     localStorage.setItem('professors', JSON.stringify(professors));
 
+    ipc.send('reload-req', 1);
+});
+
+exit.addEventListener('click', () => {
     ipc.send('reload-req', 1);
 });

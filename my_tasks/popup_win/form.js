@@ -7,6 +7,7 @@ var subjectField = document.getElementById('subject');
 var dateField = document.getElementById('date');
 var typeField = document.getElementById('type');
 var submitButton = document.getElementById('submit_btn');
+var exit = document.getElementById('exit_btn');
 
 submitButton.addEventListener('click', () => {
     var title = titleField.value;
@@ -91,3 +92,7 @@ function onLoad(){
 }
 
 onLoad();
+
+exit.addEventListener('click', () => {
+    ipc.send('reload-req', 0);
+});

@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
 body{
     background-color: black;
+    font-family: 'DM Mono', monospace;
 }
 
 .container{
@@ -29,7 +32,6 @@ body{
 .text{
     font-size: 35px;
     text-align: center;
-    font-family: monospace;
 }
 .container form{
     margin-top: -20px;
@@ -39,7 +41,6 @@ body{
     height: 45px;
     margin: 40px 0;
     width: 100%;
-    font-family: monospace;
     font-size: 15px;
 }
 
@@ -65,7 +66,6 @@ body{
 .komentar{
     margin-bottom: 30px;
     margin-top: -5px;
-    font-family: monospace;
 }
 
 .btn{
@@ -81,8 +81,6 @@ button{
     background-color: transparent;
     color: whitesmoke;
     font-size: 20px;
-    font-family:monospace;
-    
 }
 
 .btn:hover{

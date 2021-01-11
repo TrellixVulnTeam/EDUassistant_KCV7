@@ -25,6 +25,7 @@ sett_button.addEventListener('click', () => {
 })
 
 tms_button.addEventListener('click', () => {
+    ipc.send('op_mainwin');
     ipc.send('op_teams');
 })
 

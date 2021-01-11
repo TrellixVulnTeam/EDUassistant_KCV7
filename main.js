@@ -10,7 +10,7 @@
 /* ####################################################################################################### */
 
 // Osnovne varijable za stvaranje prozora, prikaza web sučelja i electron
-const {app, BrowserWindow, BrowserView, electron} = require('electron')
+const {app, BrowserWindow, BrowserView, electron, session} = require('electron')
 const url = require("url");
 const path = require("path");
 const shell = require('electron').shell;
@@ -21,11 +21,17 @@ require('jquery');
 // Window aplikacije i prikaz svih vanjskih sučelja poput teams, word...
 let mainWindow;
 let prikaz;
+const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
 
 /* ####################################################################################################### */
 
 // Funkcija za stvaranje prozora prva se pokreće kad je aplikacija spremna
 function createWindow () {
+    session.defaultSession.webRequest.onBeforeSendHeaders((detalis, callback) => {
+        detalis.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
+        callback({cancel: false, requestHeaders: detalis.requestHeaders});
+    });
+
     mainWindow = new BrowserWindow({    // Deklariranje glavnog prozora
     webPreferences: {
         nodeIntegration: true           // Postavljanje nodeIntegration u true, just don't ask I am sick of it
@@ -36,18 +42,20 @@ function createWindow () {
 
     prikaz = new BrowserView(           // Deklaracija prikaza koji prikazuje vanjske sadržaje
         {webPreferences: {
-            nodeIntegration: false,
+            nodeIntegration:false,
+            contextIsolation: true,
             enableRemoteModule: true,
-            webSecurity: false,         // Neophodne gluposti da prikaz radi kako spada
-            javascript:true,
-            contextIsolation: true
+            experimentalFeatures: true,
+            enableBlinkFeatures: 'ExecCommandInJavaScript', 
+            webSecurity: false
         }});
 
-    prikaz.require = require('jquery');                             // Prikaz zahtjeva jquery kako bi radio
+    mainWindow.webContents.setUserAgent(userAgent)
+    prikaz.webContents.setUserAgent(userAgent);
 
     mainWindow.addBrowserView(prikaz);                              // Ubacivanje prikaza u glavni prozor
     prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });   // Postaljanje pozicije i rezolucije prikaza u glavnom prozoru
-    prikaz.webContents.loadURL('https://office.com');               // URL koji prikaz učitava u ovom slučaju office.com
+    prikaz.webContents.loadURL('https://teams.microsoft.com');               // URL koji prikaz učitava u ovom slučaju office.com
 
     mainWindow.loadURL(
         url.format({
@@ -102,13 +110,14 @@ ipc.on('op_settings', () => {
 });
 
 ipc.on('op_teams', () => {
-    dialog.showMessageBox(null, {
+    /*dialog.showMessageBox(null, {
         type: 'info',
         defaultId: 1,
         title: 'Teams Unavailable!',
         message: 'Teams are not yet avaliable!',
         detail: 'Working on it soon I will make it... :('
-    });
+    });*/
+    prikaz.webContents.loadURL('https://teams.microsoft.com');
 })
 
 ipc.on('op_tasks', () => {
@@ -139,6 +148,7 @@ ipc.on('op_gmail', () => {
             width: 1280,
             height: 720
         });
+        program_win.webContents.setUserAgent(userAgent);
         program_win.loadURL('https://mail.google.com')
         program_win.on('closed', () => {
             program_win = null;
@@ -161,6 +171,7 @@ ipc.on('op_word', () => {
             width: 1280,
             height: 720
         });
+        program_win.webContents.setUserAgent(userAgent);
         program_win.loadURL('https://www.office.com/launch/word')
         program_win.on('closed', () => {
             program_win = null;
@@ -183,6 +194,7 @@ ipc.on('op_powerpoint', () => {
             width: 1280,
             height: 720
         });
+        program_win.webContents.setUserAgent(userAgent);
         program_win.loadURL('https://www.office.com/launch/powerpoint')
         program_win.on('closed', () => {
             program_win = null;
@@ -205,6 +217,7 @@ ipc.on('op_excel', () => {
             width: 1280,
             height: 720
         });
+        program_win.webContents.setUserAgent(userAgent);
         program_win.loadURL('https://www.office.com/launch/excel')
         program_win.on('closed', () => {
             program_win = null;
@@ -311,7 +324,16 @@ ipc.on('reload-req', (e, request_number) => {
             })
             );
     }
-    
+});
+
+ipc.on('del-refresh', () => {
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'my_tools/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
 });
 
 /* ####################################################################################################### */
@@ -357,7 +379,8 @@ ipc.on('create_task_win', (e, title) => {
 
         taskSolvingWin.addBrowserView(taskSolvingView);
         taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
-        taskSolvingView.setAutoResize({ width: true, height: false}); 
+        taskSolvingView.setAutoResize({ width: true, height: false});
+        taskSolvingView.webContents.setUserAgent(userAgent); 
         taskSolvingView.webContents.loadURL('https://mail.google.com');
 
         taskSolvingWin.on('closed', () => {
