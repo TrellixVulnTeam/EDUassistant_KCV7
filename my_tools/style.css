@@ -96,16 +96,3 @@ body {
 .ico {
     margin: none;
 }
-
-.app-title {
-    vertical-align: center;
-}
-
-.del-btn {
-    margin-left: 10px;
-    height: 15%;
-}
-
-.del-btn:active {
-    filter: opacity(0.5);
-}

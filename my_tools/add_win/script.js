@@ -5,10 +5,10 @@ var dialog = remote.require('electron').dialog;
 
 var tool_path;
 
-var name_space = document.getElementById("name");
 var search_btn = document.getElementById("search_btn");
 var submit = document.getElementById('submit_btn');
 var exit = document.getElementById('exit_btn');
+var tool_name;
 
 search_btn.addEventListener('click', () => {
     tool_path = dialog.showOpenDialogSync({
@@ -18,11 +18,12 @@ search_btn.addEventListener('click', () => {
     console.log(tool_path);
     var dir = tool_path[0].split(path.sep);
     search_btn.innerHTML = dir[dir.length-1];    
+    tool_name = search_btn.innerHTML.replace(/\.[^/.]+$/, "")
 })
 
 submit.addEventListener('click', () => {
     var tool = {
-        name: name_space.value,
+        name: tool_name,
         path: tool_path[0]
     }
 

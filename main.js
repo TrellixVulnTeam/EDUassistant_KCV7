@@ -1,13 +1,4 @@
-/* ######################################### MAIN ENGINE ##################################################
- *
- * Ovaj file stvara prozor i odrađuje glavne funkcije u radu sa electronom
- * sadrži glavni IPC.main koji prima zahtjeve od drugih .js fileova i izvršava
- * radnje na najvišem nivou. Nemojte mi puno drkat po ovome ovo je više sensitive
- * od cure u pubertetu koja ima menstruaciju.
- * 
- *                                                                                    - Doktor
- */
-/* ####################################################################################################### */
+// Main file that does most inmportant things in the project
 
 // Osnovne varijable za stvaranje prozora, prikaza web sučelja i electron
 const {app, BrowserWindow, BrowserView, electron, session} = require('electron')
@@ -21,7 +12,6 @@ require('jquery');
 // Window aplikacije i prikaz svih vanjskih sučelja poput teams, word...
 let mainWindow;
 let prikaz;
-const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
 
 /* ####################################################################################################### */
 
@@ -40,6 +30,8 @@ function createWindow () {
     })
     mainWindow.maximize();              // Automatski se maksimizira prozor
 
+    var userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
+    
     prikaz = new BrowserView(           // Deklaracija prikaza koji prikazuje vanjske sadržaje
         {webPreferences: {
             nodeIntegration:false,
@@ -110,13 +102,6 @@ ipc.on('op_settings', () => {
 });
 
 ipc.on('op_teams', () => {
-    /*dialog.showMessageBox(null, {
-        type: 'info',
-        defaultId: 1,
-        title: 'Teams Unavailable!',
-        message: 'Teams are not yet avaliable!',
-        detail: 'Working on it soon I will make it... :('
-    });*/
     prikaz.webContents.loadURL('https://teams.microsoft.com');
 })
 
@@ -148,8 +133,7 @@ ipc.on('op_gmail', () => {
             width: 1280,
             height: 720
         });
-        program_win.webContents.setUserAgent(userAgent);
-        program_win.loadURL('https://mail.google.com')
+        program_win.loadURL('https://mail.google.com', {userAgent: 'Chrome'})
         program_win.on('closed', () => {
             program_win = null;
             program_win_opened = false;
@@ -159,72 +143,15 @@ ipc.on('op_gmail', () => {
 });
 
 ipc.on('op_word', () => {
-    if(!program_win_opened){
-        program_win = new BrowserWindow({
-            parent: mainWindow,
-            frame: true,
-            webPreferences:{
-                  nodeIntegration: false,
-                  contextIsolation: true
-                },
-            resizable: false,
-            width: 1280,
-            height: 720
-        });
-        program_win.webContents.setUserAgent(userAgent);
-        program_win.loadURL('https://www.office.com/launch/word')
-        program_win.on('closed', () => {
-            program_win = null;
-            program_win_opened = false;
-        });
-        program_win_opened = true;
-    }
+    shell.openExternal('https://www.office.com/launch/word');
 });
 
 ipc.on('op_powerpoint', () => {
-    if(!program_win_opened){
-        program_win = new BrowserWindow({
-            parent: mainWindow,
-            frame: true,
-            webPreferences:{
-                  nodeIntegration: false,
-                  contextIsolation: true
-                },
-            resizable: false,
-            width: 1280,
-            height: 720
-        });
-        program_win.webContents.setUserAgent(userAgent);
-        program_win.loadURL('https://www.office.com/launch/powerpoint')
-        program_win.on('closed', () => {
-            program_win = null;
-            program_win_opened = false;
-        });
-        program_win_opened = true;
-    }
+    shell.openExternal('https://www.office.com/launch/powerpoint');
 });
 
 ipc.on('op_excel', () => {
-    if(!program_win_opened){
-        program_win = new BrowserWindow({
-            parent: mainWindow,
-            frame: true,
-            webPreferences:{
-                  nodeIntegration: false,
-                  contextIsolation: true
-                },
-            resizable: false,
-            width: 1280,
-            height: 720
-        });
-        program_win.webContents.setUserAgent(userAgent);
-        program_win.loadURL('https://www.office.com/launch/excel')
-        program_win.on('closed', () => {
-            program_win = null;
-            program_win_opened = false;
-        });
-        program_win_opened = true;
-    }
+    shell.openExternal('https://www.office.com/launch/excel');
 });
 
 ipc.on('op_cloud', () => {
@@ -324,16 +251,7 @@ ipc.on('reload-req', (e, request_number) => {
             })
             );
     }
-});
-
-ipc.on('del-refresh', () => {
-    mainWindow.loadURL(
-        url.format({
-            pathname: path.join(__dirname, 'my_tools/index.html'),
-            protocol: "file:",                                     
-            slashes: true
-        })
-        );
+    
 });
 
 /* ####################################################################################################### */
@@ -379,9 +297,8 @@ ipc.on('create_task_win', (e, title) => {
 
         taskSolvingWin.addBrowserView(taskSolvingView);
         taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
-        taskSolvingView.setAutoResize({ width: true, height: false});
-        taskSolvingView.webContents.setUserAgent(userAgent); 
-        taskSolvingView.webContents.loadURL('https://mail.google.com');
+        taskSolvingView.setAutoResize({ width: true, height: false}); 
+        taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Chrome'});
 
         taskSolvingWin.on('closed', () => {
             taskSolvingWin = null;
@@ -405,11 +322,11 @@ ipc.on("enable_task_view", () => {
     taskSolvingWin.addBrowserView(taskSolvingView);
     taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
     taskSolvingView.setAutoResize({ width: true, height: false}); 
-    taskSolvingView.webContents.loadURL(lastView);
+    taskSolvingView.webContents.loadURL(lastView, {userAgent: 'Chrome'});
 })
 
 ipc.on("op_gmail_view", () => {
-    taskSolvingView.webContents.loadURL('https://mail.google.com');
+    taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Chrome'});
     lastView = 'https://mail.google.com';
 })
 
@@ -493,4 +410,49 @@ ipc.on('op_tools_adder', () => {
         });
         taskWinOpened = true;
     }
+})
+
+/* ####################################################################################################### */
+
+// eDnevnik connect
+
+let connectWin;
+let connectWinOpened = false;
+
+ipc.on('connect_ednevnik', () => {
+    if(!connectWinOpened){
+        connectWin = new BrowserWindow({
+            width: 800,
+            height: 600,
+            webPreferences:{
+                nodeIntegration: true
+            }
+        });
+
+        connectWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'staff/connect/form.html'),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+
+        connectWin.on('close', () => {
+            connectWin = null;
+            connectWinOpened = false;
+        });
+
+        connectWinOpened = true;
+    }
+})
+
+ipc.on('reload-req-conn', () => {
+    connectWin.close();
+    mainWindow.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'staff/index.html'),
+            protocol: "file:",                                     
+            slashes: true
+        })
+        );
 })

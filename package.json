@@ -1,18 +1,25 @@
 {
-  "name": "eduassistant",
-  "version": "1.0.0",
-  "description": "Your online school assistant!",
+  "name": "edu-assistant",
+  "version": "0.2.0",
+  "description": "EDU Assistant, your online school assistant",
   "main": "main.js",
   "scripts": {
+    "test": "test",
     "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/ivandoslic/EDUassistant"
   },
   "author": "BitHood",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^11.1.1"
+    "electron": "^11.1.1",
+    "python-shell": "^2.0.3"
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "python-shell": "^2.0.3"
   }
 }

@@ -87,3 +87,11 @@ function onLoad(){
 }
 
 onLoad();
+
+// Connect eDnevnik
+
+var connectBtn = document.getElementById('connect_ed');
+
+connectBtn.addEventListener('click', () => {
+    ipc.send('connect_ednevnik');
+})

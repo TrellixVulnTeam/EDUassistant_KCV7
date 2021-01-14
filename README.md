@@ -8,20 +8,10 @@ If you have an idea or improvement contact us at ***bithood.business@gmail.com**
 
 Any questions about the code? You can directly contact ***doslicivan03@gmail.com***
 
-# **Alpha 0.2 RELEASED 11.01.2021.**
+# **TEST RELEASE 09.01.2021.**
 
-After releasing first alpha the other day I gained a few infromation about the app bugs and errors. They are mostly
-fixed now. Also there is a big thing added to the app.
-
-Release : [Download](https://github.com/ivandoslic/EDUassistant/releases/tag/v0.2-alpha)
-You only need *v0.2.-aplha.zip* everything is in it. 😄
-
-## v0.2.-alpha PRESENTS ***Microsoft Teams***
-
-As of this update the MS Teams are available within the app. If you followed from the start you know that Teams
-made our biggest problem this morning I managed to make it work.
-
-More about that on [Stackoverflow](https://stackoverflow.com/questions/65484957/displaying-teams-web-app-in-my-electron-app/65666431#65666431)
+So, the first release is here and in a week or so I am planning on pushing the first official release. When I gather
+some information from testing and trying to use the app in real life like situations.
 
 ### NOW AVAILABLE
 
@@ -44,14 +34,13 @@ More about that on [Stackoverflow](https://stackoverflow.com/questions/65484957/
     - Žao mi je što nam Carnet brani da koristimo svoje školske accounte za sve ovo, ali vjerujte mi
     radim svim silama na tome da nam dopuste to
 
-- ***MICROSOFT TEAMS WORKS***
-
 ### Things to come in future
 
 - ***Full Redesign*** - We are planing to make this more modern and nice
 - Adding a profesor profile window along side a profile image that the app will get from
 Teams or Yammer
 - Adding a way for your tools to get their application icons instead of 🔧 when you add them 
+- Adding Teams support, somehow IDK, I can't promise you anything
 - Adding settings, which are to come along side redesing so you'll be able to ***personalize your app***
 - The Angular part will finaly be removed because it isn't used once 😐
 - Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see

@@ -35,13 +35,6 @@ function create_tool(name, path){
     var title = document.createElement('a');
     var titleTxt = document.createTextNode(name);
     title.appendChild(titleTxt);
-    title.classList.add("app-title");
-
-    var delimg = document.createElement('img');
-    delimg.setAttribute("src", "icons/x.png");
-    delimg.classList.add("del-btn");
-
-    title.appendChild(delimg);
 
     card.appendChild(title);
 
@@ -50,14 +43,11 @@ function create_tool(name, path){
 
     card.appendChild(ico);
 
-    ico.addEventListener('click', () => {
+    card.addEventListener('click', () => {
         shell.openPath(path);
     })
 
     tool_space.appendChild(card);
-
-    delimg.setAttribute("tool-name", name);
-    delimg.addEventListener('click', delTool);
 }
 
 function onLoad(){
@@ -75,34 +65,6 @@ function onLoad(){
 }
 
 onLoad();
-
-function delTool(e){
-    let ToolName = e.target.getAttribute("tool-name");
-    console.log(ToolName);
-    if(confirm('Are you sure you want to delete this tool?')){
-        removeToolFromLS(ToolName);
-    }
-}
-
-function removeToolFromLS(ToolName){
-    let tools;
-
-    if(localStorage.getItem('tools') === null){
-        tools = [];
-    } else {
-        tools = JSON.parse(localStorage.getItem('tools'));
-    }
-
-    tools.forEach(function(tool, index){
-        if(ToolName === tool.name){
-            tools.splice(index, 1);
-        }
-
-    ipc.send('del-refresh');
-    });
-
-    localStorage.setItem('tools', JSON.stringify(tools));
-}
 
 /* ####################################################################################################### */
 
