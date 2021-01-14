@@ -8,11 +8,6 @@ If you have an idea or improvement contact us at ***bithood.business@gmail.com**
 
 Any questions about the code? You can directly contact ***doslicivan03@gmail.com***
 
-# **TEST RELEASE 09.01.2021.**
-
-So, the first release is here and in a week or so I am planning on pushing the first official release. When I gather
-some information from testing and trying to use the app in real life like situations.
-
 ### NOW AVAILABLE
 
 - MyTasks
@@ -33,6 +28,7 @@ some information from testing and trying to use the app in real life like situat
     - MyTasks dio vam pruža i mogućnost korištenja Carnet Webmaila ako želite
     - Žao mi je što nam Carnet brani da koristimo svoje školske accounte za sve ovo, ali vjerujte mi
     radim svim silama na tome da nam dopuste to
+    - Možete si stvorit popis profesora putem eDnevnika
 
 ### Things to come in future
 
@@ -40,16 +36,33 @@ some information from testing and trying to use the app in real life like situat
 - Adding a profesor profile window along side a profile image that the app will get from
 Teams or Yammer
 - Adding a way for your tools to get their application icons instead of 🔧 when you add them 
-- Adding Teams support, somehow IDK, I can't promise you anything
 - Adding settings, which are to come along side redesing so you'll be able to ***personalize your app***
-- The Angular part will finaly be removed because it isn't used once 😐
 - Soon I'll start working on commenting the whole source code in English and maybe I'll translate some variable names to English, we'll see
 
-#### For now there is some bug fixing and testing to be done
+# Alpha 0.3 log
 
-# Short message from dev
+It is morning I am tired and just realized that I commited files as "Aplha" instead of "Alpha" SMH. But for the update...
 
-***It is here!*** The test release of an app is done. After a lot of work, I hope you will find a bunch of bugs in it (**sarcastically said**). Now there are all of the initially planned features (MyTools, MyTasks, Staff). Nothing is done yet a lot of work is left especially for my design crew who are planning on **completely redesigning the app**. That means a lot of stuff for me also because you know how that goes usually. Also, there is a whole list of features I am planning to add in the future. For now, I’ll take some rest and let them design what we need. Feel free to report any bugs if you see them or if you have an idea contact mail is somewhere above this message. See ya soon!! 😎
+## Python
+
+**Python** is here 
+my favorite language and the one I am most skilled in. ***GIT Hub*** calculated a lot of python and other stuff for this project languages even though
+that is *not the case*. A lot of it is because I added the *python folder* in the app with all the libraries because windows do not come with python
+installed, so sorry for that I'll see what I can do... What I did with python is that I made a simple ***webscraping script*** that allows you to go to
+Croatian national site where you can see your grades and other stuff (eDnevnik) and there it gathers professor and subjet names and writes
+it to dictionary later converted to JSON you can see it [here](https://github.com/ivandoslic/EDUassistant/blob/main/staff/connect/get-professors.py).
+I will try to add some new and fun stuff with python later, but for now this is the only use case.
+
+## Desing
+
+Team is already in the redesing process and it looks ***AMAZING***, in a couple of days with alpha 0.5 I hope to release the whole redesigned app.
+I won't spoil anything for now.
+
+## Website
+
+Also the website update. We started working on the website on which you'll be able to download the app. I am working on making the .msi file for installing EDU Assistant as it is growing a lot. It acctualy almost doubled in size as od Python implementation so it takes a lot of time for older computers to extract everything from the .zip file.
+
+##
 
 Ivan Doslic, back-end dev 🤓
 
