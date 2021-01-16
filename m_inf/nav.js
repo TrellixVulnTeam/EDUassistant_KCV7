@@ -1,24 +1,3 @@
-/* OUTDATED removing in next patch
-
-//Babić : (Babiću komentiraj svoj dio da mi znamo ak budeš još šta radio u java scriptu oko nav bara)
-
-function navSlide() {
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav-links");
-                                                            // komentar
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("nav-active");
-    });
-}
-*/
-/* ####################################################################################################### */
-/*
-navSlide();     // komentar
-*/
-/* ####################################################################################################### */
-
-// Došlić :
-
 var edn_button  = document.querySelector('.ednevnik');
 var tms_button  = document.querySelector('.teams');
 var ymr_button  = document.querySelector('.yammer');
@@ -26,6 +5,7 @@ var sett_button = document.querySelector('.settings');
 var tasks_button = document.querySelector('.tasks');
 var staff_button = document.querySelector('.staff');
 var tools_button = document.querySelector('.tools');
+var quick_add  = document.querySelector('.qucik_add_task');
 
 
 /* ####################################################################################################### */
@@ -63,3 +43,25 @@ tools_button.addEventListener('click', () => {
 })
 
 /* ####################################################################################################### */
+
+// Frame
+
+const BrowserWindow = require('electron').remote;
+
+document.getElementById("min-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.minimize(); 
+});
+
+document.getElementById("close-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.close();
+}); 
+
+/* ####################################################################################################### */
+
+// Quick add task
+
+quick_add.addEventListener('click', () => {
+    ipc.send('open_task_creation', "yes");
+})

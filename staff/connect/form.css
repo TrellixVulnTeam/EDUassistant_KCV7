@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
 
 body{
-    background-color: black;
-    font-family: 'DM Mono', monospace;
+    font-family: Segoe UI;
+    width: 150px;
 }
 
 .container{
+    border-radius: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 .container{
-    background-color:white;
-    width:410px;
+    background-image: linear-gradient(#807AE9, #D32A51);
+    width:310px;
+    height: 88.5%;
     padding: 30px;
 }
 
@@ -23,6 +25,7 @@ body{
     top: 3%;
     font-size: 30px;
     cursor: pointer;
+    color: white;
 }
 
 .close-btn:hover{
@@ -32,6 +35,8 @@ body{
 .text{
     font-size: 35px;
     text-align: center;
+    font-weight: bolder;
+    color: white;
 }
 .container form{
     margin-top: -20px;
@@ -42,25 +47,35 @@ body{
     margin: 40px 0;
     width: 100%;
     font-size: 15px;
+    color: white;
 }
 
 .data input{
     width: 100%;
     height: 100%;
     font-size: 19px;
-    border-bottom: 5px solid grey;
-    border-right: 5px solid grey;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
 }
 
+input::placeholder{
+    color: white;
+    filter: opacity(50%) ;
+}
 
 
 .inner{
     width: 100%;
-    background-color: black;
+    background-color: rgb(253, 253, 253);
     text-align: center;
     height: 50px;
     border-color: transparent;
-   
+    border-radius: 12px;
 }
 
 .komentar{
@@ -69,9 +84,13 @@ body{
 }
 
 .btn{
-    width: 100%;
+    transform: translateY(50px);
+    width: 70%;
     height: 45px;
     text-align: center;
+    border-radius: 12px;
+    border: 0.5px solid gray;
+    margin: 5% auto 1% auto;
 }
 
 button{
@@ -79,10 +98,12 @@ button{
     height: 100%;
     cursor: pointer;
     background-color: transparent;
-    color: whitesmoke;
+    color: gray;
     font-size: 20px;
+    border-radius: 12px;
+    border: none;
 }
 
 .btn:hover{
-    transform:scale(1.1);
+    filter: opacity(50%);
 }

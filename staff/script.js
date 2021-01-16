@@ -95,3 +95,20 @@ var connectBtn = document.getElementById('connect_ed');
 connectBtn.addEventListener('click', () => {
     ipc.send('connect_ednevnik');
 })
+
+/* ####################################################################################################### */
+
+// Frame
+
+const BrowserWindow = require('electron').remote;
+
+document.getElementById("min-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.minimize(); 
+});
+
+document.getElementById("close-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.close();
+}); 
+

@@ -8,8 +8,11 @@ var dateField = document.getElementById('date');
 var typeField = document.getElementById('type');
 var submitButton = document.getElementById('submit_btn');
 var exit = document.getElementById('exit_btn');
+var is_from_teams = ipc.sendSync('is_started_from_teams');
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', submitInfo);
+
+function submitInfo(){
     var title = titleField.value;
     var subject = subjectField.value;
     var date = dateField.value;
@@ -36,8 +39,13 @@ submitButton.addEventListener('click', () => {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
-    ipc.send('reload-req', 0);
-});
+    if(is_from_teams){
+        ipc.send('reload-req', 99);
+    } else {
+        ipc.send('reload-req', 0);
+    }
+    
+}
 
 // Drop Down Part
 
@@ -94,5 +102,17 @@ function onLoad(){
 onLoad();
 
 exit.addEventListener('click', () => {
-    ipc.send('reload-req', 0);
+    if(is_from_teams){
+        ipc.send('reload-req', 99);
+    } else {
+        ipc.send('reload-req', 0);
+    }
 });
+
+// Keyboard enter submists
+
+document.addEventListener("keyup", function(event) {
+    if (event.code === 'Enter') {
+      submitInfo();
+    }
+  });

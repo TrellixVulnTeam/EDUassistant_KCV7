@@ -47,7 +47,9 @@ function create_tool(name, path){
         shell.openPath(path);
     })
 
+    tool_space.removeChild(add_tool);
     tool_space.appendChild(card);
+    tool_space.appendChild(add_tool);
 }
 
 function onLoad(){
@@ -65,6 +67,7 @@ function onLoad(){
 }
 
 onLoad();
+
 
 /* ####################################################################################################### */
 
@@ -107,4 +110,18 @@ staff_button.addEventListener('click', () => {
 })
 
 /* ####################################################################################################### */
+
+// Frame
+
+const BrowserWindow = require('electron').remote;
+
+document.getElementById("min-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.minimize(); 
+});
+
+document.getElementById("close-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.close();
+}); 
 

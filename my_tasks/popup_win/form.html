@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create New Task...</title>
+    <title>Stvori zadatak...</title>
     <link rel="stylesheet" href="form.css">
     <script defer src="form.js"></script>
 </head>
@@ -10,35 +10,34 @@
     <div class="center">
         <div class="container">
             <label for="" class=" close-btn fas fa-time" id="exit_btn">x</label>
-            <div class="text">New Task</div>
+            <div class="text">Novi zadatak</div>
                 <div class="data">
-                    <label>Title*</label>
-                    <input type="text" id="title" required>
+                    <label>Naslov*</label>
+                    <input type="text" placeholder="Množenje i dijeljenje" maxlength="40" id="title" required >
                 </div>
                 <div class="data">
-                    <label>Subject</label required>
-                    <input type="text" id="subject">     
+                    <label>Predmet</label required>
+                    <input type="text" placeholder="Matematika" maxlength="25" id="subject">     
                 </div>
                 <div class="data">
-                    <label>Date</label>
-                    <input type="text" id="date">
+                    <label>Rok</label>
+                    <input type="text" id="date" placeholder="1.1.2020">
                 </div>               
                 <div class="data">
                     <div class="dropdown">
-                        <button id="show_professors" class="dropbtn">Professor</button>
+                        <button id="show_professors" class="dropbtn">Profesor</button>
                         <div id="lista_profesora" class="dropdown-content">
                             
                         </div>
                     </div>      
                 </div>
                 <div class="data">
-                    <label>File type</label required>
-                    <input type="text" id="type">
-                </div> 
-                <div class="komentar">File type("homework,test,etc...")</div>                   
+                    <label>Tip zadataka</label required>
+                    <input type="text" placeholder="DZ,Ispit,Provjera,Bilješka,itd..." maxlength="30" id="type">
+                </div>                   
                 <div class="btn">
                     <div class="inner" required>
-                        <button id="submit_btn">Create Task</button>
+                        <button id="submit_btn">Stvori zadatak</button>
                     </div>
                 </div>
         </div>    

@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
-
 body {
-    background-color: white;
     color:black;
-    font-family: 'DM Mono', monospace;
+    font-family: Segoe UI;
+    padding: 0px;
+    margin: 0px; 
+    background-image: linear-gradient(#0099FF, #4EE1FF);
+    background-position:fixed; 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    height: 720px;
 }
 
 .sidebar{
@@ -21,7 +25,7 @@ body {
 .sidebar img{
     display: block;
     padding-top: 20px;
-    height: 5%;
+    height: 7%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -69,66 +73,73 @@ body {
 
 .gore {
     text-align: center;
-    color:black;
+    color:white;
     margin-left: 80px;
     padding: 0px 10px;
+}
+
+.gore h1 {
+    text-shadow: 0px 0px 12px #000000;
 }
 
 .tasks-section {
     text-align: center;
     color:black;
-    margin-left: 80px;
-    padding: 0px 10px;
+    /*margin-left: 80px;*/
+    margin: 0 0 0 5%;
+    padding: 0px 5px;
 }
 
 .card-list {
     display: flex;
     padding: 3rem;
-    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 508px;
+    flex-wrap: wrap;
+    margin-left: 65px;
 }
 
 .card-list::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 5px;
 }
 
 .card-list::-webkit-scrollbar-thumb {
-    background: white;
-    border-radius: 10px;
-    box-shadow: inset 2px 2px 2px hsla(0,0%,100%,.25), inset -2px -2px 2px rgba(0,0,0,.25);
+    background: #888;
+}
+
+.card-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .card-list::-webkit-scrollbar-track {
-    background: linear-gradient(90deg,white,white 1px,gray 0,gray);
+    background: #f1f1f1;
 }
 
 .card {
-    height: 350px;
-    width: 400px;
+    height: 275px;
+    width: 200px;
     min-width: 250px;
     padding: 1.5rem;
     border-radius: 16px;
     background: white;
-    box-shadow: -1rem 0 3rem white;
     display: flex;
     flex-direction: column;
     transition: .2s;
     margin: 0;
+    margin-bottom: 15px;
+    margin-left: 20px;
     scroll-snap-align: start;
     clear: both;
     position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card:focus-within~.card, .card:hover~.card {
-    transform: translateX(130px);
+    transform: translateX(0px);
 }
 
 .card:hover {
     transform: translateY(-1rem);
-}
-
-.card:not(:first-child) {
-    margin-left: -130px;
 }
 
 .card-header {
@@ -160,7 +171,7 @@ body {
 }
 
 .card-author {
-    margin: 3rem 0 0;
+    margin: 1.5rem 0 0;
     display: grid;
     grid-template-columns: 75px 1fr;
     align-items: center;
@@ -209,8 +220,8 @@ body {
 }
 
 .tags {
-    margin: 1rem 0 2rem;
-    padding: .5rem 0 1rem;
+    margin: 0rem 0 0rem;
+    padding: .5rem 0 0rem;
     line-height: 2;
     margin-bottom: 0;
 }
@@ -221,7 +232,7 @@ body {
     font-size: .5rem;
     color: black;
     text-transform: uppercase;
-    font-size: .66rem;
+    font-size: 10px;
     border: 3px solid #28242f;
     border-radius: 2rem;
     padding: .2rem .85rem .25rem;
@@ -235,4 +246,87 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     border-color: black;
+}
+
+.title-bar {
+    -webkit-app-region: drag;
+    height: 30px; 
+    background-color: rgb(55, 55, 56);
+    padding: none;
+    margin: 0px; 
+}
+
+.title {
+    padding-left: 85px;
+    padding-top: 5px;
+    position: fixed;
+    top: 0px;
+    left: 6px; 
+    color: whitesmoke;
+    font-family: Segoe UI; 
+}
+
+.title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0px;
+    right: 6px;
+}
+
+.title-bar-btns button {
+    background-color: rgb(55, 55, 56); /* Green */
+    border: none;
+    color: white;
+    padding-inline: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+}
+
+.title-bar-btns button img {
+    height: 35%;
+}
+
+#close-btn:hover{
+    background-color:salmon;
+    outline: none;
+}
+
+#close-btn:active{
+    background-color:red;
+    outline: none;
+}
+
+#min-btn:hover{
+    background-color:rgb(70, 70, 70)
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.yammer {
+    margin-bottom: 45px;
+}
+
+.tools {
+    margin-bottom: 150px;
 }

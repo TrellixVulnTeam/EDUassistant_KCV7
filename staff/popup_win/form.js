@@ -9,7 +9,9 @@ var teamsField = document.getElementById('teams');
 var submitButton = document.getElementById('submit_btn');
 var exit = document.getElementById('exit_btn');
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', submitInfo);
+
+function submitInfo(){
     var name = nameField.value;
     var subject = subjectField.value;
     var email = emailField.value;
@@ -35,8 +37,14 @@ submitButton.addEventListener('click', () => {
     localStorage.setItem('professors', JSON.stringify(professors));
 
     ipc.send('reload-req', 1);
-});
+}
 
 exit.addEventListener('click', () => {
     ipc.send('reload-req', 1);
 });
+
+document.addEventListener("keyup", function(event) {
+    if (event.code === 'Enter') {
+      submitInfo();
+    }
+  });

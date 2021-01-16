@@ -1,14 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
-
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 body {
-    background-color: white;
-    color:black;
-    font-family: 'DM Mono', monospace;
+    color:white;
+    font-family: Segoe UI; 
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(#0099FF, #4EE1FF);
+    background-position:fixed; 
+    background-size: cover; 
+    background-repeat: no-repeat;
 }
 
 .staff_part img {
@@ -43,7 +46,7 @@ body {
 .sidebar img{
     display: block;
     padding-top: 20px;
-    height: 5%;
+    height: 7%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -57,13 +60,132 @@ body {
 }
 
 .staff_part {
-    margin-left: 80px;
+    text-shadow: 0px 0px 12px #000000;
+    float: left;
     padding: 0px 10px;
+    width: 350px;
+    height: 500px;
+}
+
+#popis {
+    overflow-y: scroll;
+    height: 380px;
+}
+
+#popis::-webkit-scrollbar{
+    width: 5px;
 }
 
 .gore {
     text-align: center;
-    color:black;
+    color:white;
+    text-shadow: 0px 0px 12px #000000;
     margin-left: 80px;
     padding: 0px 10px;
+}
+
+.title-bar {
+    -webkit-app-region: drag;
+    height: 30px; 
+    background-color: rgb(55, 55, 56);
+    padding: none;
+    margin: 0px; 
+}
+
+.title {
+    padding-left: 85px;
+    padding-top: 5px;
+    position: fixed;
+    top: 0px;
+    left: 6px; 
+    color: whitesmoke;
+    font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif; 
+}
+
+.title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0px;
+    right: 6px;
+}
+
+.title-bar-btns button {
+    background-color: rgb(55, 55, 56); /* Green */
+    border: none;
+    color: white;
+    padding-inline: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+}
+
+.title-bar-btns button img {
+    height: 35%;
+}
+
+#close-btn:hover{
+    background-color:salmon;
+    outline: none;
+}
+
+#close-btn:active{
+    background-color:red;
+    outline: none;
+}
+
+#min-btn:hover{
+    background-color:rgb(70, 70, 70)
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.yammer {
+    margin-bottom: 45px;
+}
+
+.tools {
+    margin-bottom: 150px;
+}
+
+#add_btn img {
+    height: 13%;
+}
+
+.bg_img {
+    width: 800px;
+    float: left;
+    bottom: 0;
+    
+}
+
+.bg_img img {
+    height: 100%;
+    padding-left: 100px;
+}
+
+.workspace {
+    margin-left: 80px;
+    width: 1200px;
+    height: 604px;
+    display: block;
 }

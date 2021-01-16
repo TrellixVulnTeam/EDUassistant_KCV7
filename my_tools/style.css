@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
 
 body {
-    background-color: white;
-    color:black;
-    font-family: 'DM Mono', monospace;
+    background-image: linear-gradient(#0099FF, #4EE1FF);
+    color:white;
+    font-family: Segoe UI; 
+    margin: 0;
+    padding: 0;
 }
 
 .sidebar{
@@ -21,7 +23,7 @@ body {
 .sidebar img{
     display: block;
     padding-top: 20px;
-    height: 5%;
+    height: 7%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -41,10 +43,11 @@ body {
 
 .gore {
     text-align: center;
-    color:black;
+    color:white;
     margin-left: 80px;
     padding: 0px 10px;
     margin-bottom: 100px;
+    text-shadow: 0px 0px 12px #000000;
 }
 
 
@@ -54,12 +57,16 @@ body {
     display: inline-block;
     margin-right: 30px;
     margin-bottom: 30px;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border-radius: 15px;
     transition: transform 300ms;
     text-align: center;
-    
+    text-shadow: 0px 0px 12px #000000;
+}
+
+.card a {
+    transform: translateX(-100%) translateY(-100%);
 }
 
 .card:hover {
@@ -67,7 +74,8 @@ body {
 }
 
 .card img {
-    transform: scale(0.5) translateX(-19%) translateY(-20%);
+    transform: scale(0.3) translateX(-100%) translateY(-100%);
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
 }
 
 .card img:hover {
@@ -81,11 +89,11 @@ body {
 .add_btn {
     display: inline-block;
     transition: transform 300ms;
-    transform: scale(0.5) translateY(-20%);
+    transform: scale(0.3) translateY(-100%) translateX(-100%);
 }
 
 .add_btn:hover {
-    transform: scale(0.6);
+    transform: scale(0.4) translateY(-75%) translateX(-75%);
     filter: opacity(100%);
 }
 
@@ -95,4 +103,87 @@ body {
 
 .ico {
     margin: none;
+}
+
+.title-bar {
+    -webkit-app-region: drag;
+    height: 30px; 
+    background-color: rgb(55, 55, 56);
+    padding: none;
+    margin: 0px; 
+}
+
+.title {
+    padding-left: 85px;
+    padding-top: 5px;
+    position: fixed;
+    top: 0px;
+    left: 6px; 
+    color: whitesmoke;
+    font-family: Segoe UI; 
+}
+
+.title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0px;
+    right: 6px;
+}
+
+.title-bar-btns button {
+    background-color: rgb(55, 55, 56); /* Green */
+    border: none;
+    color: white;
+    padding-inline: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+}
+
+.title-bar-btns button img {
+    height: 35%;
+}
+
+#close-btn:hover{
+    background-color:salmon;
+    outline: none;
+}
+
+#close-btn:active{
+    background-color:red;
+    outline: none;
+}
+
+#min-btn:hover{
+    background-color:rgb(70, 70, 70)
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.yammer {
+    margin-bottom: 45px;
+}
+
+.tools {
+    margin-bottom: 150px;
 }

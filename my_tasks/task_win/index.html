@@ -5,15 +5,23 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="title-bar">
+            <div class="title-bar-btns">
+                <button id="move"><img src="images/move.png"></button>
+                 <button id="close-btn"><img src="images/close.png"></button>
+            </div>
+        </div>
         <div class="task_desc">
-           <div class="task_text"> 
-            <h2 id="title">Task Title </h2>
-            <img src="images/cpyTitle.png" class="cpy" id="title_cpy">
-            <p id="rok">Rok: 01.01.2000.</p>
-            <p id="predmet">Predmet: 'neki predmet'</p>
-            <p id="profesor">Profesor: 'profesor'</p>
-            <p id="tip">Tip: zadaca/test/kviz</p>
-           </div>
+            <div class="title_n_cpy">
+                <h2 id="title">Task Title </h2>
+                <img src="images/cpyTitle.png" class="cpy" id="title_cpy">
+            </div>
+            <div class="task_text">
+                <p id="rok">Rok: 01.01.2000.</p>
+                <p id="predmet">Predmet: 'neki predmet'</p>
+                <p id="profesor">Profesor: 'profesor'</p>
+                <p id="tip">Tip: zadaca/test/kviz</p>
+            </div>
         </div>
 
         <div class="create_new">
@@ -35,13 +43,13 @@
            <div class="contact_text">
             <h2>Kontakt</h2>
             <ul>
-                <li><img src="images/smallgmail.png">
-                    <a id="mail_text">Placeholder</a>
+                <li><img src="images/smallgmail.png" id="set_mail_indicator">
+                    <a id="mail_text"></a>
                     <img src="images/cpyMail.png" class="cpy" id="mail_cpy">
                 </li>
                 <li>
-                    <img src="images/smallteams.png">
-                    <a id="teams_text">Placeholder</a>
+                    <img src="images/smallteams.png" id="set_teams_indicator">
+                    <a id="teams_text"></a>
                 </li>
                 <li>...</li>
             </ul>
@@ -53,7 +61,6 @@
         </div>
         
         <div class="switch_space">
-            <img src="images/logo_home.png" class="home_btn">
             <img src="images/carnetwebmailapp.png" id="WebmailBtn" class="webmailapp">
             <img src="images/smallgmailapp.png" id="GmailBtn" class="gmailapp">
         </div>

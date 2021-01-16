@@ -6,7 +6,7 @@ const ipc = require('electron').ipcRenderer;
 const ipcM = require('electron').ipcMain;
 
 button.addEventListener('click', () => {
-    ipc.send('open_task_creation');
+    ipc.send('open_task_creation', 0);
 });
 
 function createTask(title, subject, dateValue, professor, type){
@@ -176,3 +176,20 @@ staff_button.addEventListener('click', () => {
 tools_button.addEventListener('click', () => {
     ipc.send('op_tools');
 })
+
+/* ####################################################################################################### */
+
+// Frame
+
+const BrowserWindow = require('electron').remote;
+
+document.getElementById("min-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.minimize(); 
+});
+
+document.getElementById("close-btn").addEventListener("click", () => {
+    var win = BrowserWindow.getCurrentWindow();
+    win.close();
+}); 
+

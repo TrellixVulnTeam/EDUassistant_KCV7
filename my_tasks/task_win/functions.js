@@ -19,6 +19,9 @@ let profesor_public;
 let mail_text = document.getElementById('mail_text');
 let teams_text = document.getElementById('teams_text');
 
+let set_mail = document.getElementById('set_mail_indicator');
+let set_teams = document.getElementById('set_teams_indicator');
+
 op_gmail_btn.addEventListener('click', () => {
     ipc.send("op_gmail_view");
 });
@@ -62,8 +65,25 @@ function onLoad(){
 
     professors.forEach(professor => {
         if(profesor_public === professor.Name){
-            mail_text.innerHTML = professor.Email;
-            teams_text.innerHTML = professor.Teams;
+            console.log("PROF MATCH!");
+            if(professor.Email === "placeholder"){
+                mail_text.innerHTML = "Add email";
+                mail_text.addEventListener('click', () => {
+                    ipc.send('set_prof_mail', profesor_public);
+                });
+            } else {
+                mail_text.innerHTML = professor.Email;
+            }
+            
+            if(professor.Teams === "placeholder"){
+                teams_text.innerHTML = "Add teams";
+                teams_text.addEventListener('click', () => {
+                    ipc.send('set_prof_teams', profesor_public);
+                });
+            } else {
+                teams_text.innerHTML = professor.Teams;
+            }
+            
         }
     })
 
@@ -158,3 +178,25 @@ function addToDrop(name, path){
 
     dropdown.appendChild(a);
 }
+
+/* ####################################################################################################### */
+
+// Frame
+
+const BrowserWindow = require('electron').remote;
+
+document.getElementById("close-btn").addEventListener("click", () => {
+    ipc.send('close-solving-win');
+}); 
+
+/* ####################################################################################################### */
+
+// Changing teams and mail
+
+set_mail.addEventListener('click', () => {
+    ipc.send('set_prof_mail', profesor_public);
+});
+
+set_teams.addEventListener('click', () => {
+    ipc.send('set_prof_teams', profesor_public);
+})

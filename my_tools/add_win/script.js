@@ -18,10 +18,11 @@ search_btn.addEventListener('click', () => {
     console.log(tool_path);
     var dir = tool_path[0].split(path.sep);
     search_btn.innerHTML = dir[dir.length-1];    
-    tool_name = search_btn.innerHTML.replace(/\.[^/.]+$/, "")
+    tool_name = search_btn.innerHTML.replace(/\.[^/.]+$/, "");
+    search_btn.blur();
 })
 
-submit.addEventListener('click', () => {
+function submitInfo(){
     var tool = {
         name: tool_name,
         path: tool_path[0]
@@ -40,8 +41,16 @@ submit.addEventListener('click', () => {
     localStorage.setItem('tools', JSON.stringify(tools));
 
     ipc.send('reload-req', 2);
-})
+}
 
 exit.addEventListener('click', () => {
     ipc.send('reload-req', 2);
 });
+
+submit.addEventListener('click', submitInfo);
+
+document.addEventListener("keyup", function(event) {
+    if (event.code === 'Enter') {
+      submitInfo();
+    }
+  });

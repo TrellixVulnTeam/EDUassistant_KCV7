@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
 .sidebar{
     position: fixed;
     top: 0;
@@ -13,7 +15,7 @@
 .sidebar img{
     display: block;
     padding-top: 20px;
-    height: 5%;
+    height: 7%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -24,4 +26,162 @@
 
 .sidebar img:active{
     filter: opacity(100%);
+}
+
+body {
+    padding: 0px;
+    margin: 0px; 
+}
+   
+.title-bar {
+    -webkit-app-region: drag;
+    height: 30px; 
+    background-color: rgb(55, 55, 56);
+    padding: none;
+    margin: 0px; 
+}
+
+.title {
+    padding-left: 85px;
+    padding-top: 5px;
+    position: fixed;
+    top: 0px;
+    left: 6px; 
+    color: whitesmoke;
+    font-family: 'DM Mono', monospace;
+}
+
+.title-bar-btns {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0px;
+    right: 6px;
+}
+
+.title-bar-btns button {
+    background-color: rgb(55, 55, 56); /* Green */
+    border: none;
+    color: white;
+    padding-inline: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 30px;
+    outline: none;
+}
+
+.title-bar-btns button img {
+    height: 35%;
+}
+
+#close-btn:hover{
+    background-color:salmon;
+    outline: none;
+}
+
+#close-btn:active{
+    background-color:red;
+    outline: none;
+}
+
+#min-btn:hover{
+    background-color:rgb(70, 70, 70)
+}
+
+.yammer {
+    margin-bottom: 45px;
+}
+
+.tools {
+    margin-bottom: 150px;
+}
+
+.shortcut {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateY(30px);
+    z-index: 1;
+    overflow-x: hidden;
+    padding-top: 20px;
+    width: 30px;
+    height: 100%;
+    background: rgb(55, 55, 56);
+}
+
+.shortcut img {
+    margin-right: 2px;
+    height: 5%;
+}
+
+.shortcut img:hover{
+    filter: opacity(0.5);
+}
+
+.shortcut img:active{
+    filter: opacity(1);
+}
+
+.loading {
+    width: 1170px;
+    height: 690px;
+    padding-left: 80px;
+    background-image: linear-gradient(#0099FF, #4EE1FF);
+    background-position:fixed; 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+}
+
+.logo_part {
+    height: 80%;
+}
+
+.spinner {
+    height: 20%;
+}
+
+.logo_part img {
+    padding-left: 100px;
+    padding-top: 180px;
+}
+
+.lds-facebook {
+    transform: translateX(1000px);
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+@keyframes lds-facebook {
+    0% {
+        top: 8px;
+        height: 64px;
+    }
+    50%, 100% {
+        top: 24px;
+        height: 32px;
+    }
 }

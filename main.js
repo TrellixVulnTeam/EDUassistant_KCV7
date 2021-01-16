@@ -23,12 +23,15 @@ function createWindow () {
     });
 
     mainWindow = new BrowserWindow({    // Deklariranje glavnog prozora
+    frame: false,
+    resizable: false,
+    width: 1280,
+    height: 720,
     webPreferences: {
-        nodeIntegration: true           // Postavljanje nodeIntegration u true, just don't ask I am sick of it
-    },
-    show: false                         // Pri samom pokretanju prozor se ne prikazuje dok se ne učitaju neke stvari
+        nodeIntegration: true,           // Postavljanje nodeIntegration u true, just don't ask I am sick of it
+        enableRemoteModule: true
+    }
     })
-    mainWindow.maximize();              // Automatski se maksimizira prozor
 
     var userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36';
     
@@ -46,7 +49,8 @@ function createWindow () {
     prikaz.webContents.setUserAgent(userAgent);
 
     mainWindow.addBrowserView(prikaz);                              // Ubacivanje prikaza u glavni prozor
-    prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });   // Postaljanje pozicije i rezolucije prikaza u glavnom prozoru
+    prikaz.setBounds({ x: 80, y: 30, width: 1170, height: 690 });   // Postaljanje pozicije i rezolucije prikaza u glavnom prozoru
+    prikaz.setAutoResize({ width: false, height: false});
     prikaz.webContents.loadURL('https://teams.microsoft.com');               // URL koji prikaz učitava u ovom slučaju office.com
 
     mainWindow.loadURL(
@@ -56,10 +60,6 @@ function createWindow () {
             slashes: true
         })
         );
-
-    mainWindow.webContents.on('ready', () => {
-        mainWindow.show();                                          // Kad se neke stvari učitaju prikaže se prozor
-    })
 
     mainWindow.on('closed', function () {
         mainWindow = null                                               // Kad sve prestane s radom glavni prozor postaje null
@@ -133,7 +133,7 @@ ipc.on('op_gmail', () => {
             width: 1280,
             height: 720
         });
-        program_win.loadURL('https://mail.google.com', {userAgent: 'Chrome'})
+        program_win.loadURL('https://mail.google.com', {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'})
         program_win.on('closed', () => {
             program_win = null;
             program_win_opened = false;
@@ -168,7 +168,8 @@ ipc.on('op_mainwin', () => {
         );
 
     mainWindow.addBrowserView(prikaz);
-    prikaz.setBounds({ x: 80, y: 50, width: 1280, height: 720 });
+    prikaz.setBounds({ x: 80, y: 30, width: 1170, height: 690 });
+    prikaz.setAutoResize({ width: false, height: false});
 })
 
 ipc.on('op_tools', () => {
@@ -195,18 +196,27 @@ ipc.on('test', () => {
 
 let taskWinOpened = false;
 let taskWin;
+let is_from_teams;
 
-ipc.on('open_task_creation', () => {
+ipc.on('open_task_creation', (e, param) => {
     if(!taskWinOpened){
+        if(param === "yes"){
+            is_from_teams = true;
+        } else {
+            is_from_teams = false;
+        }
+        
         taskWin = new BrowserWindow({
             parent: mainWindow,
+            transparent: true,
             frame: false,
+            resizable: false,
             webPreferences:{
                   nodeIntegration: true
                 },
             resizable: false,
-            width: 480,
-            height: 660
+            width: 580,
+            height: 660,
             });
         taskWin.loadURL(
             url.format({
@@ -215,6 +225,7 @@ ipc.on('open_task_creation', () => {
                 slashes: true
             })
         );
+        
         taskWin.on('closed', () => {
             taskWin = null;
             taskWinOpened = false;
@@ -275,6 +286,8 @@ ipc.on('create_task_win', (e, title) => {
             parent: mainWindow,
             width: 1280,
             height: 720,
+            frame: false,
+            resizable: false,
             webPreferences:{nodeIntegration: true}
         });
 
@@ -296,9 +309,9 @@ ipc.on('create_task_win', (e, title) => {
         }});
 
         taskSolvingWin.addBrowserView(taskSolvingView);
-        taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
+        taskSolvingView.setBounds({ x: 0, y: 175, width: 1277, height: 505 });
         taskSolvingView.setAutoResize({ width: true, height: false}); 
-        taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Chrome'});
+        taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'});
 
         taskSolvingWin.on('closed', () => {
             taskSolvingWin = null;
@@ -310,8 +323,11 @@ ipc.on('create_task_win', (e, title) => {
 });
 
 ipc.on("content_request", (e, arg) => {
-    console.log(arg);
     e.returnValue = lastTaskTitle;
+})
+
+ipc.on("is_started_from_teams", (e, arg) => {
+    e.returnValue = is_from_teams;
 })
 
 ipc.on("disable_task_view", () => {
@@ -320,19 +336,23 @@ ipc.on("disable_task_view", () => {
 
 ipc.on("enable_task_view", () => {
     taskSolvingWin.addBrowserView(taskSolvingView);
-    taskSolvingView.setBounds({ x: 0, y: 161, width: 1276, height: 463 });
+    taskSolvingView.setBounds({ x: 0, y: 175, width: 1277, height: 505 });
     taskSolvingView.setAutoResize({ width: true, height: false}); 
-    taskSolvingView.webContents.loadURL(lastView, {userAgent: 'Chrome'});
+    taskSolvingView.webContents.loadURL(lastView, {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'});
 })
 
 ipc.on("op_gmail_view", () => {
-    taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Chrome'});
+    taskSolvingView.webContents.loadURL('https://mail.google.com', {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36'});
     lastView = 'https://mail.google.com';
 })
 
 ipc.on("op_webmail_view", () => {
     taskSolvingView.webContents.loadURL('https://webmail.carnet.hr');
     lastView = 'https://webmail.carnet.hr';
+})
+
+ipc.on('close-solving-win', () => {
+    taskSolvingWin.close();
 })
 
 /* ####################################################################################################### */
@@ -363,8 +383,11 @@ ipc.on('op_professor_addwin', () => {
                 nodeIntegration: true
             },
             frame: false,
+            resizable: false,
+            frame: false,
             width: 480,
-            height: 535
+            height: 535,
+            transparent: true
         });
         taskWin.loadURL(
             url.format({
@@ -394,8 +417,11 @@ ipc.on('op_tools_adder', () => {
                 enableRemoteModule: true
             },
             frame: false,
+            resizable: false,
+            frame: false,
             width: 480,
-            height: 535
+            height: 600,
+            transparent: true
         });
         taskWin.loadURL(
             url.format({
@@ -422,11 +448,14 @@ let connectWinOpened = false;
 ipc.on('connect_ednevnik', () => {
     if(!connectWinOpened){
         connectWin = new BrowserWindow({
-            width: 800,
-            height: 600,
+            width: 485,
+            height: 550,
             webPreferences:{
                 nodeIntegration: true
-            }
+            },
+            frame:false,
+            resizable: false,
+            transparent: true
         });
 
         connectWin.loadURL(
@@ -455,4 +484,92 @@ ipc.on('reload-req-conn', () => {
             slashes: true
         })
         );
+})
+
+let changeWin;
+let changeWinOpened = false;
+let prof_for_mail;
+let prof_for_teams;
+
+ipc.on('set_prof_mail', (e, prf_name) => {
+    prof_for_mail = prf_name;
+    if(!changeWinOpened){
+        changeWin = new BrowserWindow({
+            frame: false,
+            transparent: true,
+            width: 480,
+            height: 600,
+            resizable: false,
+            webPreferences:{
+                nodeIntegration: true,
+                enableRemoteModule: true
+            }
+        });
+
+        changeWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tasks/task_win/change_mail/form.html'),
+                protocol: "file:",                                     
+                slashes: true
+            })
+        );
+
+        changeWin.on('close', () => {
+            changeWin = null;
+            changeWinOpened = false;
+        });
+
+        changeWinOpened = true;
+    }
+})
+
+ipc.on('set_prof_teams', (e, prf_name) => {
+    prof_for_teams = prf_name;
+    if(!changeWinOpened){
+        changeWin = new BrowserWindow({
+            frame: false,
+            transparent: true,
+            width: 480,
+            height: 600,
+            resizable: false,
+            webPreferences:{
+                nodeIntegration: true,
+                enableRemoteModule: true
+            }
+        });
+
+        changeWin.loadURL(
+            url.format({
+                pathname: path.join(__dirname, 'my_tasks/task_win/change_teams/form.html'),
+                protocol: "file:",                                     
+                slashes: true
+            })
+        );
+
+        changeWin.on('close', () => {
+            changeWin = null;
+            changeWinOpened = false;
+        });
+
+        changeWinOpened = true;
+    }
+})
+
+ipc.on('req_for_mail_name', (e) => {
+    e.returnValue = prof_for_mail;
+})
+
+ipc.on('req_for_teams_name', (e) => {
+    e.returnValue = prof_for_teams;
+})
+
+ipc.on('close_change', () => {
+    changeWin.close();
+    taskSolvingWin.loadURL(
+        url.format({
+            pathname: path.join(__dirname, 'my_tasks/task_win/index.html'),
+            protocol: "file:",
+            slashes: true
+        })
+    );
 })

@@ -1,6 +1,6 @@
 {
-  "name": "edu-assistant",
-  "version": "0.2.0",
+  "name": "eduassistant",
+  "version": "1.0.0",
   "description": "EDU Assistant, your online school assistant",
   "main": "main.js",
   "scripts": {

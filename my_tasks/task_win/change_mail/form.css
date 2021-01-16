@@ -1,0 +1,178 @@
+html, body{
+  font-family: Segoe UI;
+  border-radius: 30px;
+}
+
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container{
+  background-image: linear-gradient(#0EE2C3, #4B69EB);
+  width:420px;
+  padding: 30px;
+  height: 270x;
+  border-radius: 30px;
+}
+
+.container .close-btn{
+  position: absolute;
+  right: 10%;
+  top: 3%;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.close-btn:hover{
+ filter: opacity(50%);
+}
+
+.text{
+font-size: 35px;
+text-align: center;
+font-weight: bolder;
+color: white;
+}
+.container form{
+  margin-top: -20px;
+}
+
+.data{
+height: 45px;
+margin: 40px 0;
+width: 100%;
+font-size: 15px;
+color: white;;
+}
+
+.data input{
+width: 100%;
+height: 100%;
+font-size: 19px;
+border-bottom: 1px solid rgb(228, 228, 228);
+border-right: none;
+border-top: none;
+border-left: none;
+background-color: transparent;
+color: white;
+outline: none;
+}
+
+.data input::placeholder{
+color: white;
+filter: opacity(50%) ;
+}
+
+.inner{
+  width: 100%;
+  background-color: rgb(252, 252, 252);
+  text-align: center;
+  height: 50px;
+  border-color: transparent;
+  border-radius: 12px;
+ 
+}
+
+.komentar{
+  margin-bottom: 30px;
+  margin-top: -5px;
+}
+
+.btn{
+width: 100%;
+height: 45px;
+text-align: center;
+margin-bottom: 1px;
+border-radius: 12px;
+}
+
+button{
+width: 98%;
+height: 99%;
+cursor: pointer;
+background-color: transparent;
+border: none;
+border-radius: 12px;
+color: rgb(70, 70, 70);
+font-size: 20px;
+font-weight: bolder;
+}
+
+.btn:hover{
+filter: opacity(50%) ;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: rgb(255, 255, 255);
+  color:rgb(70, 70, 70);
+  padding: 16px;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: gray;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  width: 100%;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  height: 200px;
+  overflow-y: scroll;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
