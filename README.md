@@ -34,7 +34,7 @@ Any questions about the code? You can directly contact ***doslicivan03@gmail.com
 
 - Adding a profesor profile window along side a profile image that the app will get from
 Teams or Yammer
-- Adding settings, which are to come along side redesing so you'll be able to ***personalize your app***
+- Adding settings, so you'll be able to ***personalize your app***
 
 # The Team
 
