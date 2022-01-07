@@ -1,15 +1,5 @@
 # EDU Assistant 📚
 
-***Soon*** our website will be up for now you can visit releases.
-
-# Contact
-
-If you have an idea or an improvement contact us at ***bithood.business@gmail.com***
-
-Any questions about the code? You can directly contact ***doslicivan03@gmail.com***
-
-# Official Release 1.0
-
 ### NOW AVAILABLE
 
 - MyTasks
@@ -32,9 +22,7 @@ Any questions about the code? You can directly contact ***doslicivan03@gmail.com
 
 ### Things to come in future
 
-- Adding a profesor profile window along side a profile image that the app will get from
-Teams or Yammer
-- Adding settings, so you'll be able to ***personalize your app***
+- Unfortunately this project is abandoned a long time ago... Further updates won't be made, unless I get some inspiration to work on it, in which case I will redo everything - Ivan Došlić 07/01/2022
 
 # The Team
 
